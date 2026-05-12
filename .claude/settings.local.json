@@ -5,7 +5,8 @@
       "WebFetch(domain:www.kairyudo.co.jp)",
       "WebFetch(domain:krdkrk.jp)",
       "WebFetch(domain:www.shugakusha.co.jp)",
-      "Bash(python3 *)"
+      "Bash(python3 *)",
+      "Bash(git *)"
     ]
   }
 }
