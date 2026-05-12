@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>英語 小テスト③（総合編 単語・地名・表現）— 2026-05-12</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --accent: #2563eb;
+    --accent-soft: #dbeafe;
+    --ok: #16a34a;
+    --text: #0f172a;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --bg: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+    font-size: 17px;
+  }
+  header {
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+  }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .meta { color: var(--muted); font-size: 13px; }
+  .toolbar {
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 0;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    z-index: 10;
+  }
+  .toolbar button {
+    border: 1px solid var(--accent);
+    background: #fff;
+    color: var(--accent);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .toolbar button:hover { background: var(--accent-soft); }
+  .toolbar button.primary { background: var(--accent); color: #fff; }
+  .q {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    page-break-inside: avoid;
+  }
+  .q-no {
+    font-weight: bold;
+    color: var(--accent);
+    margin-right: 6px;
+  }
+  .q-type {
+    font-size: 11px;
+    color: #fff;
+    background: var(--muted);
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .q-body { margin-top: 6px; }
+  .choices { list-style: none; padding-left: 0; margin: 6px 0 0; }
+  .choices li {
+    padding: 4px 0 4px 28px;
+    position: relative;
+  }
+  .choices li::before {
+    content: attr(data-mark);
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-weight: bold;
+  }
+  .answer {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #f0fdf4;
+    border-left: 3px solid var(--ok);
+    border-radius: 4px;
+    display: none;
+  }
+  .answer.show { display: block; }
+  .answer-label { color: var(--ok); font-weight: bold; font-size: 13px; }
+  .toggle-btn {
+    border: 1px solid var(--line);
+    background: #fff;
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  .toggle-btn:hover { color: var(--ok); border-color: var(--ok); }
+  .blank {
+    display: inline-block;
+    min-width: 80px;
+    border-bottom: 1.5px solid var(--text);
+    padding: 0 4px;
+  }
+  footer {
+    margin-top: 40px;
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+  }
+  @media print {
+    .toolbar, .toggle-btn { display: none !important; }
+    body { padding: 0; font-size: 14px; max-width: none; }
+    .q { break-inside: avoid; border-color: #999; }
+    .answer { background: #fff; border-left-color: #333; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>英語 小テスト③（総合編 単語・地名・表現）— 2026-05-12</h1>
+  <div class="meta">英語 / 全 15 問 / 生成日: 2026-05-12</div>
+</header>
+
+<div class="toolbar">
+  <button onclick="toggleAll(true)">全ての答えを表示</button>
+  <button onclick="toggleAll(false)">全て隠す</button>
+  <button class="primary" onclick="window.print()">印刷 / PDF</button>
+</div>
+
+<main id="questions">
+
+  <div class="q" data-no="1">
+    <div><span class="q-no">問1</span>次の日本語を英語にしなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">りんご → （<span class="blank"></span>）</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> apple</div>
+  </div>
+
+  <div class="q" data-no="2">
+    <div><span class="q-no">問2</span>次の日本語を英語にしなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">ねこ → （<span class="blank"></span>） ／ たまご → （<span class="blank"></span>）</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> cat ／ egg</div>
+  </div>
+
+  <div class="q" data-no="3">
+    <div><span class="q-no">問3</span>次の日本語を英語にしなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">かさ → （<span class="blank"></span>）</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> umbrella（l が 2 つ）</div>
+  </div>
+
+  <div class="q" data-no="4">
+    <div><span class="q-no">問4</span>次の日本語を英語にしなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">動物園 → （<span class="blank"></span>） ／ サッカー → （<span class="blank"></span>）</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> zoo ／ soccer（c が 2 つ）</div>
+  </div>
+
+  <div class="q" data-no="5">
+    <div><span class="q-no">問5</span>次の日本語を英語にしなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">医者 → （<span class="blank"></span>）</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> doctor</div>
+  </div>
+
+  <div class="q" data-no="6">
+    <div><span class="q-no">問6</span>次の単語の意味を日本語で書きなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">taste</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 味 ／ 味わう（学校プリントの綴りが flavor の場合は flavor も可）</div>
+  </div>
+
+  <div class="q" data-no="7">
+    <div><span class="q-no">問7</span>次の都道府県名をヘボン式ローマ字で書きなさい。最初の文字は大文字にすること。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">静岡 → （<span class="blank"></span>） ／ 福岡 → （<span class="blank"></span>）</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> Shizuoka ／ Fukuoka</div>
+  </div>
+
+  <div class="q" data-no="8">
+    <div><span class="q-no">問8</span>次の地名をヘボン式ローマ字で書きなさい。最初の文字は大文字にすること。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">北海道 → （<span class="blank"></span>） ／ 千葉 → （<span class="blank"></span>）</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> Hokkaido ／ Chiba</div>
+  </div>
+
+  <div class="q" data-no="9">
+    <div><span class="q-no">問9</span>次の地名をヘボン式ローマ字で書きなさい。最初の文字は大文字にすること。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">新潟（に・い・が・た）→ （<span class="blank"></span>）</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> Niigata（「に」+「い」で i が 2 つ並ぶ）</div>
+  </div>
+
+  <div class="q" data-no="10">
+    <div><span class="q-no">問10</span>次の地名のヘボン式表記として正しいものを選びなさい。<span class="q-type">選択</span></div>
+    <div class="q-body">難波（なんば）
+      <ul class="choices">
+        <li data-mark="ア.">Nanba</li>
+        <li data-mark="イ.">Namba</li>
+        <li data-mark="ウ.">Nampa</li>
+        <li data-mark="エ.">Namuba</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> イ. Namba（「ん」は b の前では m を使う）</div>
+  </div>
+
+  <div class="q" data-no="11">
+    <div><span class="q-no">問11</span>次の日本語をヘボン式ローマ字で書きなさい。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">柔道 → （<span class="blank"></span>） ／ すし → （<span class="blank"></span>）</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> judo ／ sushi</div>
+  </div>
+
+  <div class="q" data-no="12">
+    <div><span class="q-no">問12</span>次の日本語をヘボン式ローマ字で書きなさい。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">茶わん → （<span class="blank"></span>） ／ 祭り → （<span class="blank"></span>）</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> chawan ／ matsuri</div>
+  </div>
+
+  <div class="q" data-no="13">
+    <div><span class="q-no">問13</span>次のあいさつの意味を日本語で書きなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">Nice to meet you.</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> はじめまして。／お会いできてうれしいです。</div>
+  </div>
+
+  <div class="q" data-no="14">
+    <div><span class="q-no">問14</span>次の文が正しければ「○」、誤っていれば「×」を書きなさい。<span class="q-type">正誤</span></div>
+    <div class="q-body">英語の文では、文の最初の文字、人名、地名、そして "I"（私は）は、いつでも大文字で書く。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ○</div>
+  </div>
+
+  <div class="q" data-no="15">
+    <div><span class="q-no">問15</span>次の英文の（　）に、適切な語または記号を入れて、正しい英文にしなさい。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">私は東京出身です。 → （<span class="blank"></span>） am from （<span class="blank"></span>）（<span class="blank"></span>）</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> I ／ Tokyo ／ .（文頭の I、地名 Tokyo、文末のピリオド）</div>
+  </div>
+
+</main>
+
+<footer>midterm_exam_preparation / make-test</footer>
+
+<script>
+  function toggleAnswer(btn) {
+    const ans = btn.nextElementSibling;
+    ans.classList.toggle('show');
+    btn.textContent = ans.classList.contains('show') ? '答えを隠す' : '答えを見る';
+  }
+  function toggleAll(show) {
+    document.querySelectorAll('.answer').forEach(a => a.classList.toggle('show', show));
+    document.querySelectorAll('.toggle-btn').forEach(b => {
+      b.textContent = show ? '答えを隠す' : '答えを見る';
+    });
+  }
+</script>
+</body>
+</html>

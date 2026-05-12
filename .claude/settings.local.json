@@ -4,7 +4,8 @@
       "WebSearch",
       "WebFetch(domain:www.kairyudo.co.jp)",
       "WebFetch(domain:krdkrk.jp)",
-      "WebFetch(domain:www.shugakusha.co.jp)"
+      "WebFetch(domain:www.shugakusha.co.jp)",
+      "Bash(python3 *)"
     ]
   }
 }
