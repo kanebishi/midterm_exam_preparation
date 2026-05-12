@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300">
+  <!-- ── 左：網状脈（双子葉類） ── -->
+
+  <!-- 葉の輪郭（広葉、卵形） -->
+  <path d="M 130 50 Q 60 110 75 200 Q 130 250 220 200 Q 230 110 130 50 Z"
+        fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+
+  <!-- 葉柄 -->
+  <line x1="130" y1="50" x2="130" y2="30" stroke="#2e7d32" stroke-width="2"/>
+
+  <!-- 主脈 -->
+  <line x1="130" y1="55" x2="195" y2="220" stroke="#1b5e20" stroke-width="2"/>
+
+  <!-- 側脈（複数の分岐） -->
+  <g stroke="#388e3c" stroke-width="1.2" fill="none">
+    <path d="M 138 75  Q 110 95  90  120"/>
+    <path d="M 145 95  Q 180 100 215 110"/>
+    <path d="M 152 115 Q 110 135 85  155"/>
+    <path d="M 158 130 Q 195 135 220 145"/>
+    <path d="M 165 150 Q 115 170 95  190"/>
+    <path d="M 172 170 Q 200 175 215 180"/>
+    <path d="M 178 188 Q 135 215 130 230"/>
+  </g>
+
+  <!-- さらに細かい網目（短い線で表現） -->
+  <g stroke="#66bb6a" stroke-width="0.6" fill="none">
+    <line x1="105" y1="100" x2="120" y2="115"/>
+    <line x1="125" y1="110" x2="140" y2="120"/>
+    <line x1="170" y1="105" x2="190" y2="118"/>
+    <line x1="100" y1="140" x2="115" y2="155"/>
+    <line x1="145" y1="135" x2="160" y2="145"/>
+    <line x1="190" y1="140" x2="210" y2="150"/>
+    <line x1="100" y1="180" x2="120" y2="190"/>
+    <line x1="155" y1="170" x2="170" y2="180"/>
+    <line x1="115" y1="210" x2="135" y2="220"/>
+  </g>
+
+  <!-- ラベル -->
+  <text x="135" y="280" text-anchor="middle"
+        font-size="15" fill="#1b5e20" font-weight="bold"
+        font-family="-apple-system, sans-serif">A</text>
+
+  <!-- ── 右：平行脈（単子葉類） ── -->
+
+  <!-- 葉の輪郭（細長い葉） -->
+  <path d="M 360 30 Q 320 150 360 250 Q 400 150 360 30 Z"
+        fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+
+  <!-- 平行に走る脈 -->
+  <g stroke="#1b5e20" stroke-width="1.2" fill="none">
+    <path d="M 360 35  Q 345 150 360 245"/>
+    <path d="M 360 35  Q 335 150 358 247"/>
+    <path d="M 360 35  Q 350 150 362 245"/>
+    <path d="M 360 35  Q 375 150 362 247"/>
+    <path d="M 360 35  Q 385 150 360 245"/>
+  </g>
+
+  <!-- 主脈（中央、太め） -->
+  <line x1="360" y1="35" x2="360" y2="245" stroke="#1b5e20" stroke-width="1.8"/>
+
+  <!-- ラベル -->
+  <text x="360" y="280" text-anchor="middle"
+        font-size="15" fill="#1b5e20" font-weight="bold"
+        font-family="-apple-system, sans-serif">B</text>
+</svg>

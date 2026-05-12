@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400">
+  <!-- ── 左：マツの枝全体 ── -->
+
+  <!-- 主枝 -->
+  <line x1="120" y1="395" x2="120" y2="80" stroke="#6d4c2e" stroke-width="6"/>
+  <!-- 側枝（雄花の付く） -->
+  <line x1="120" y1="240" x2="180" y2="200" stroke="#6d4c2e" stroke-width="4"/>
+
+  <!-- 松葉（束生）枝の途中 -->
+  <g stroke="#2e7d32" stroke-width="1.5" fill="none">
+    <line x1="120" y1="150" x2="80"  y2="130"/>
+    <line x1="120" y1="150" x2="90"  y2="150"/>
+    <line x1="120" y1="150" x2="80"  y2="170"/>
+    <line x1="120" y1="290" x2="80"  y2="280"/>
+    <line x1="120" y1="290" x2="80"  y2="305"/>
+    <line x1="120" y1="290" x2="90"  y2="320"/>
+  </g>
+
+  <!-- 雌花（枝の先端、紫がかった赤、小さな松ぼっくり状） -->
+  <ellipse cx="120" cy="65" rx="14" ry="22"
+           fill="#b71c1c" stroke="#4e0d0d" stroke-width="1.8"/>
+  <!-- 雌花のりん片の段々（横線で表現） -->
+  <g stroke="#4e0d0d" stroke-width="0.8" fill="none">
+    <line x1="108" y1="55" x2="132" y2="55"/>
+    <line x1="107" y1="65" x2="133" y2="65"/>
+    <line x1="108" y1="75" x2="132" y2="75"/>
+  </g>
+
+  <!-- 雄花（側枝の先、黄色いブドウ房状） -->
+  <ellipse cx="180" cy="195" rx="9" ry="14"
+           fill="#fdd835" stroke="#7a5a20" stroke-width="1.2"/>
+  <ellipse cx="195" cy="200" rx="9" ry="14"
+           fill="#fdd835" stroke="#7a5a20" stroke-width="1.2"/>
+  <ellipse cx="183" cy="215" rx="9" ry="14"
+           fill="#fdd835" stroke="#7a5a20" stroke-width="1.2"/>
+
+  <!-- ラベル枠（左：雌花領域、右：雄花領域）— 問題で番号マーカーを乗せやすいよう、ボックスは描かず素のままにする -->
+
+  <!-- ── 中央：分離線 ── -->
+  <line x1="260" y1="40" x2="260" y2="380" stroke="#bdbdbd" stroke-width="1" stroke-dasharray="5,4"/>
+
+  <!-- ── 右：りん片の拡大図 ── -->
+
+  <!-- 拡大エリア背景（薄い枠でわかりやすく） -->
+  <rect x="290" y="60" width="200" height="280"
+        fill="#fafafa" stroke="#bdbdbd" stroke-width="1" rx="6"/>
+  <text x="390" y="80" text-anchor="middle"
+        font-size="13" fill="#555" font-family="-apple-system, sans-serif">りん片の拡大</text>
+
+  <!-- 雌花のりん片1枚（カマ形） -->
+  <path d="M 320 200 Q 330 130 420 140 Q 470 170 440 240 Q 360 250 320 200 Z"
+        fill="#ffcdd2" stroke="#7a1d1d" stroke-width="2"/>
+
+  <!-- りん片の上面（胚珠が乗る面） -->
+  <path d="M 330 195 Q 345 175 430 175 Q 450 195 420 215 Q 360 220 330 195 Z"
+        fill="#ef9a9a" stroke="#7a1d1d" stroke-width="1.5"/>
+
+  <!-- 胚珠（むき出し、2個） -->
+  <circle cx="370" cy="190" r="9" fill="#fff8e1" stroke="#7a5a20" stroke-width="1.5"/>
+  <circle cx="405" cy="190" r="9" fill="#fff8e1" stroke="#7a5a20" stroke-width="1.5"/>
+
+  <!-- 雄花のりん片（参考、左下小さく） -->
+  <path d="M 320 285 Q 330 270 380 275 Q 400 290 380 305 Q 340 310 320 285 Z"
+        fill="#fff59d" stroke="#7a5a20" stroke-width="1.5"/>
+  <!-- 花粉のう（2個） -->
+  <ellipse cx="345" cy="295" rx="7" ry="4" fill="#f9a825" stroke="#7a5a20" stroke-width="1"/>
+  <ellipse cx="370" cy="295" rx="7" ry="4" fill="#f9a825" stroke="#7a5a20" stroke-width="1"/>
+</svg>

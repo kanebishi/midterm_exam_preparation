@@ -28,7 +28,10 @@ description: 中学生向けの小テストHTMLを教科ごとに生成する。
 │   └── social-studies.md
 ├── docs/                           # 生成HTMLの出力先
 │   ├── english/  math/  science/  social-studies/
-└── works/midterm-test-generator/templates/test.html.tmpl
+└── works/midterm-test-generator/
+    ├── templates/test.html.tmpl
+    ├── maps/   world-base.svg, coords.md      # 社会の地図問題用
+    └── figures/ *.svg, labels.md              # 理科の図問題用
 ```
 
 構造が無い場合は、ユーザーに「`midterm_exam_preparation` リポジトリで実行してください」と伝えて中断する。
@@ -56,6 +59,7 @@ description: 中学生向けの小テストHTMLを教科ごとに生成する。
   - **英語**: スペル / be動詞・一般動詞の使い分け / 単語の意味 / 短い英文の穴埋め
   - **数学**: 計算問題（符号付き加減乗除）／絶対値 / 大小比較 / 用語の意味
   - **理科**: 用語の意味 / 図中の名称 / 正誤判定で混同しやすい概念を突く
+    - **インライン SVG 模式図を使った問題**を 3〜6問混ぜる（詳細は後述「理科の図問題の作り方」）
   - **社会**: 地名・用語の意味 / 地図上の位置 / 年号・出来事
     - **インライン SVG 地図を使った問題**を 2〜4問混ぜる（詳細は後述「社会の地図問題の作り方」）
 - 各問題には必ず**答え**もセットで生成する（解説が必要なら短く添える）
@@ -76,6 +80,7 @@ description: 中学生向けの小テストHTMLを教科ごとに生成する。
   - 選択式: `<span class="q-type">選択</span>` + `<ul class="choices">` で選択肢
   - 正誤判定: `<span class="q-type">正誤</span>`
   - 地図（社会のみ）: `<span class="q-type">地図</span>` + `<figure class="q-map">` 内にインライン SVG（後述）
+  - 図（理科のみ）: `<span class="q-type">図</span>` + `<figure class="q-figure">` 内にインライン SVG + `<use>` 参照（後述）
 - 各問題に「答えを見る」トグル（`<button class="toggle-btn">` と `<div class="answer">`）を必ず付ける
 
 ### 4. ファイルを書き出す
@@ -209,6 +214,129 @@ description: 中学生向けの小テストHTMLを教科ごとに生成する。
 - マーカー座標は `coords.md` から取得する。**勝手な座標を作らない**（精度の保証が崩れる）
 - 番号マーカーが**陸地ではなく海上に乗らないように**注意する（特に小さな国・島国の場合）。配置後に座標を再確認する
 - 地図問題1問あたりのマーカーは **最大6個** に抑える（多すぎると視認性が落ちる）
+
+## 理科の図問題の作り方
+
+理科（`subjects/science.md`）の小テストを作るときのみ適用。他教科では使わない。
+
+### 推奨出題数
+
+10〜20問のうち **3〜6問** を図問題にする。植物分野は図ベースの理解が中心のため、社会の地図問題（2〜4問）より多め。
+
+### 使う資材
+
+`works/midterm-test-generator/figures/` 配下の SVG 群と `labels.md`：
+
+| ファイル | 内容 | 主な用途 |
+|---|---|---|
+| `flower-cross-section.svg` | 被子植物の花の断面 | 柱頭・花柱・子房・胚珠・やく・花糸・花弁・がくの部位名を問う |
+| `pine-flower.svg` | マツの雌花・雄花とりん片拡大 | 裸子植物の特徴（胚珠がむき出し）を問う |
+| `leaf-veins.svg` | 網状脈と平行脈の比較 | 双子葉類 vs 単子葉類の葉の判別 |
+| `roots.svg` | 主根+側根とひげ根の比較 | 双子葉類 vs 単子葉類の根の判別 |
+| `fern.svg` | シダ植物の全体と胞子のう拡大 | 胞子のうの位置・胞子で増えること |
+| `moss.svg` | コケ植物の雌株・雄株 | 仮根・さく・雄器の識別 |
+| `plant-classification.svg` | 植物分類の樹形図 | 階層関係を見ながら例の植物を問う |
+| `labels.md` | 各図の部位座標一覧 | ラベル番号マーカーの cx/cy を取得 |
+
+### 手順
+
+1. **使う figure SVG を Read** で読み込む（複数同時で OK、最大4枚程度を一度に使うのは避ける）
+2. **labels.md を Read** で読み込み、部位座標を取得
+3. HTML の `<body>` 冒頭付近に、図定義用の**隠し SVG** を1つ配置する。使う図ごとに `<g id="...">` で登録：
+
+   ```html
+   <svg width="0" height="0" aria-hidden="true" style="position:absolute" xmlns="http://www.w3.org/2000/svg">
+     <defs>
+       <g id="flower-cross-section">
+         <!-- flower-cross-section.svg の <svg> 内側要素をここに丸ごとコピー -->
+       </g>
+       <g id="leaf-veins">
+         <!-- leaf-veins.svg の中身 -->
+       </g>
+     </defs>
+   </svg>
+   ```
+
+4. 各図問題では、別の `<svg>` を作って `<use href="#<id>"/>` で参照したうえで、マーカー要素を追加する
+5. 問題ブロック構造に組み込む（後述）
+
+**なぜ `<use>` 方式か：** 図問題が複数あっても、図本体は1コピーで済む。社会の地図問題と同じ仕組み。
+
+### マーカーの3パターン
+
+#### A. 番号マーカー（部位名を問う）
+
+「①〜④の部位名を答えよ」のような問題で使う。`<circle>` と `<text>` のペア：
+
+```html
+<circle cx="200" cy="110" r="14" class="fig-marker"/>
+<text x="200" y="110" class="fig-num">1</text>
+```
+
+- 円の半径は `r="14"` 固定
+- text は `dominant-baseline: central` で円の中央に番号が来る
+- 番号は `1` から始まり、問題内で連番
+
+#### B. アルファベットラベル（比較選択）
+
+「葉脈Aは網状脈・平行脈のどちらか」のような問題。図には既に A, B のラベルがあるが、追加で説明矢印を打つときに使う：
+
+```html
+<text x="145" y="280" class="fig-label">A</text>
+```
+
+#### C. 領域ハイライト（部位の位置を強調）
+
+「胞子のうの位置を示せ」のような問題。該当部位の周囲に半透明の枠：
+
+```html
+<rect x="190" y="170" width="40" height="30" rx="6" class="fig-highlight"/>
+```
+
+### 問題ブロック構造（図問題）
+
+```html
+<div class="q" data-no="N">
+  <div><span class="q-no">問N</span>図の①〜④の名称を答えなさい。<span class="q-type">図</span></div>
+  <div class="q-body">
+    <figure class="q-figure">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet">
+        <use href="#flower-cross-section"/>
+        <circle cx="200" cy="110" r="14" class="fig-marker"/>
+        <text x="200" y="110" class="fig-num">1</text>
+        <circle cx="200" cy="255" r="14" class="fig-marker"/>
+        <text x="200" y="255" class="fig-num">2</text>
+        <circle cx="155" cy="150" r="14" class="fig-marker"/>
+        <text x="155" y="150" class="fig-num">3</text>
+        <circle cx="165" cy="318" r="14" class="fig-marker"/>
+        <text x="165" y="318" class="fig-num">4</text>
+      </svg>
+    </figure>
+  </div>
+  <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+  <div class="answer"><span class="answer-label">答え:</span> ①柱頭 ②子房 ③やく ④がく</div>
+</div>
+```
+
+### 図問題の出題テーマ例
+
+`subjects/science.md` の試験範囲に対応したテーマ：
+
+- **花のつくり**：被子植物の花の断面（`flower-cross-section`）の各部位を①〜⑥で問う
+- **マツの花**：（`pine-flower`）雌花・雄花の識別、胚珠がむき出しなことの確認
+- **葉脈と分類**：（`leaf-veins`）A・B どちらが双子葉類か、その理由
+- **根のつくりと分類**：（`roots`）A・B どちらがひげ根か、対応する植物例
+- **シダ植物**：（`fern`）胞子のうの位置、胞子で増えること、葉・茎・根の有無
+- **コケ植物**：（`moss`）雌株・雄株の識別、仮根の役割
+- **植物の分類**：（`plant-classification`）「裸子植物の例」「合弁花類の例」など階層をたどる問題
+
+### 重要な制約
+
+- **外部 SVG 参照は禁止**（社会の地図問題と同じ）。必ず `<defs>` 内に `<g id="...">` で丸ごとインライン展開
+- マーカー座標は `labels.md` から取得する。**勝手な座標を作らない**（部位を覆い隠す事故を防ぐ）
+- 1問あたりのマーカーは **最大6個**（社会の地図問題と同じ上限）
+- **テキストラベルを SVG 内に焼き付けない**：問題で部位名を問うため、図内に「柱頭」「子房」等と書いてしまうと答えが見えてしまう（既に各 SVG はラベルなしで作られているので、注入する `<text>` も番号のみにする）
+- **比較図（葉脈・根）の左右ラベル A・B は焼き付け済み**：そのまま使う
 
 ## 重要な注意事項
 

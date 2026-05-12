@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <!-- 茎 -->
+  <line x1="200" y1="320" x2="200" y2="395" stroke="#5a7c3e" stroke-width="4"/>
+
+  <!-- 花弁（左） -->
+  <path d="M 195 295 Q 60 210 100 110 Q 160 70 200 180 L 200 295 Z"
+        fill="#fce4ec" stroke="#c97a8b" stroke-width="1.8"/>
+  <!-- 花弁（右） -->
+  <path d="M 205 295 Q 340 210 300 110 Q 240 70 200 180 L 200 295 Z"
+        fill="#fce4ec" stroke="#c97a8b" stroke-width="1.8"/>
+
+  <!-- がく（左） -->
+  <path d="M 180 300 Q 145 335 170 296 Z"
+        fill="#aed581" stroke="#4e7a23" stroke-width="1.5"/>
+  <!-- がく（右） -->
+  <path d="M 220 300 Q 255 335 230 296 Z"
+        fill="#aed581" stroke="#4e7a23" stroke-width="1.5"/>
+
+  <!-- おしべ左：花糸 -->
+  <line x1="170" y1="295" x2="155" y2="165" stroke="#9b8b62" stroke-width="2"/>
+  <!-- おしべ左：やく -->
+  <ellipse cx="155" cy="150" rx="11" ry="18"
+           fill="#fff59d" stroke="#a07820" stroke-width="1.5"/>
+
+  <!-- おしべ右：花糸 -->
+  <line x1="230" y1="295" x2="245" y2="165" stroke="#9b8b62" stroke-width="2"/>
+  <!-- おしべ右：やく -->
+  <ellipse cx="245" cy="150" rx="11" ry="18"
+           fill="#fff59d" stroke="#a07820" stroke-width="1.5"/>
+
+  <!-- めしべ：子房 -->
+  <ellipse cx="200" cy="255" rx="28" ry="38"
+           fill="#dcedc8" stroke="#558b2f" stroke-width="1.8"/>
+
+  <!-- 胚珠（子房の中、3個） -->
+  <circle cx="190" cy="250" r="5" fill="#fff8e1" stroke="#7a5a20" stroke-width="1.2"/>
+  <circle cx="210" cy="245" r="5" fill="#fff8e1" stroke="#7a5a20" stroke-width="1.2"/>
+  <circle cx="200" cy="270" r="5" fill="#fff8e1" stroke="#7a5a20" stroke-width="1.2"/>
+
+  <!-- 花柱 -->
+  <line x1="200" y1="218" x2="200" y2="130" stroke="#558b2f" stroke-width="3"/>
+
+  <!-- 柱頭 -->
+  <path d="M 184 122 Q 200 95 216 122 Q 210 138 200 130 Q 190 138 184 122 Z"
+        fill="#aed581" stroke="#33691e" stroke-width="1.8"/>
+</svg>

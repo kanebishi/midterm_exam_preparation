@@ -177,6 +177,55 @@
   @media print {
     .q-map svg { background: #fff; max-width: 100%; }
   }
+  /* 図問題用（理科のみ使用） */
+  .q-figure {
+    margin: 12px 0 6px;
+    text-align: center;
+  }
+  .q-figure svg {
+    width: 100%;
+    max-width: 480px;
+    height: auto;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: #fafafa;
+  }
+  .fig-marker {
+    fill: #ef4444;
+    stroke: #fff;
+    stroke-width: 2;
+  }
+  .fig-num {
+    fill: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    text-anchor: middle;
+    dominant-baseline: central;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    pointer-events: none;
+  }
+  .fig-label {
+    fill: #1e3a8a;
+    font-weight: bold;
+    font-size: 13px;
+    text-anchor: middle;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    pointer-events: none;
+  }
+  .fig-highlight {
+    fill: rgba(239, 68, 68, 0.22);
+    stroke: #ef4444;
+    stroke-width: 2;
+  }
+  .fig-arrow {
+    stroke: #ef4444;
+    stroke-width: 2;
+    fill: none;
+    marker-end: url(#fig-arrow-head);
+  }
+  @media print {
+    .q-figure svg { background: #fff; max-width: 100%; }
+  }
 </style>
 </head>
 <body>

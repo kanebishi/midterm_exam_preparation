@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300">
+  <!-- ── 地面線（左右共通） ── -->
+  <line x1="20" y1="80" x2="480" y2="80" stroke="#8d6e63" stroke-width="2" stroke-dasharray="6,3"/>
+
+  <!-- ── 左：主根+側根（双子葉類） ── -->
+
+  <!-- 茎（地上） -->
+  <line x1="135" y1="80" x2="135" y2="30" stroke="#558b2f" stroke-width="3"/>
+  <!-- 子葉らしき葉 -->
+  <ellipse cx="115" cy="32" rx="14" ry="8" fill="#aed581" stroke="#558b2f" stroke-width="1.2"/>
+  <ellipse cx="155" cy="32" rx="14" ry="8" fill="#aed581" stroke="#558b2f" stroke-width="1.2"/>
+
+  <!-- 主根（太く中央、まっすぐ下に） -->
+  <path d="M 135 80 Q 137 160 135 240" stroke="#8d6e63" stroke-width="5" fill="none"/>
+
+  <!-- 側根（左右に分岐） -->
+  <g stroke="#a1887f" stroke-width="2" fill="none">
+    <path d="M 134 105 Q 100 115 75 130"/>
+    <path d="M 136 105 Q 170 115 195 128"/>
+    <path d="M 134 140 Q 95 155 65 175"/>
+    <path d="M 136 140 Q 175 155 205 175"/>
+    <path d="M 134 175 Q 105 195 80 220"/>
+    <path d="M 136 175 Q 165 195 195 215"/>
+    <path d="M 135 210 Q 115 230 100 250"/>
+    <path d="M 135 210 Q 155 230 170 250"/>
+  </g>
+
+  <!-- 細かいひげ枝 -->
+  <g stroke="#a1887f" stroke-width="1" fill="none">
+    <line x1="90" y1="130" x2="80" y2="140"/>
+    <line x1="180" y1="125" x2="190" y2="135"/>
+    <line x1="80" y1="170" x2="68" y2="180"/>
+    <line x1="190" y1="170" x2="200" y2="180"/>
+  </g>
+
+  <!-- ラベル -->
+  <text x="135" y="280" text-anchor="middle"
+        font-size="15" fill="#5d4037" font-weight="bold"
+        font-family="-apple-system, sans-serif">A</text>
+
+  <!-- ── 右：ひげ根（単子葉類） ── -->
+
+  <!-- 茎（地上、細長く） -->
+  <line x1="360" y1="80" x2="360" y2="30" stroke="#558b2f" stroke-width="3"/>
+  <!-- 細長い子葉 -->
+  <line x1="360" y1="32" x2="345" y2="15" stroke="#558b2f" stroke-width="2"/>
+  <line x1="360" y1="32" x2="375" y2="15" stroke="#558b2f" stroke-width="2"/>
+
+  <!-- 茎の付け根に小さな膨らみ -->
+  <ellipse cx="360" cy="82" rx="10" ry="5" fill="#c5e1a5" stroke="#558b2f" stroke-width="1.2"/>
+
+  <!-- ひげ根（同じ太さの根が束状に出る） -->
+  <g stroke="#a1887f" stroke-width="2" fill="none">
+    <path d="M 352 85 Q 320 130 300 220"/>
+    <path d="M 355 85 Q 335 135 320 230"/>
+    <path d="M 358 85 Q 345 140 340 240"/>
+    <path d="M 360 85 Q 360 140 360 245"/>
+    <path d="M 362 85 Q 375 140 380 240"/>
+    <path d="M 365 85 Q 385 135 400 230"/>
+    <path d="M 368 85 Q 400 130 420 220"/>
+  </g>
+
+  <!-- ひげ根の細かい枝 -->
+  <g stroke="#a1887f" stroke-width="0.8" fill="none">
+    <line x1="310" y1="175" x2="300" y2="185"/>
+    <line x1="340" y1="190" x2="332" y2="200"/>
+    <line x1="380" y1="190" x2="388" y2="200"/>
+    <line x1="410" y1="175" x2="420" y2="185"/>
+  </g>
+
+  <!-- ラベル -->
+  <text x="360" y="280" text-anchor="middle"
+        font-size="15" fill="#5d4037" font-weight="bold"
+        font-family="-apple-system, sans-serif">B</text>
+</svg>
