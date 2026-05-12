@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>社会 小テスト 第4回（2026-05-16 想定）</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --accent: #2563eb;
+    --accent-soft: #dbeafe;
+    --ok: #16a34a;
+    --text: #0f172a;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --bg: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+    font-size: 17px;
+  }
+  header {
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+  }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .meta { color: var(--muted); font-size: 13px; }
+  .toolbar {
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 0;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    z-index: 10;
+  }
+  .toolbar button {
+    border: 1px solid var(--accent);
+    background: #fff;
+    color: var(--accent);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .toolbar button:hover { background: var(--accent-soft); }
+  .toolbar button.primary { background: var(--accent); color: #fff; }
+  .q {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    page-break-inside: avoid;
+  }
+  .q-no {
+    font-weight: bold;
+    color: var(--accent);
+    margin-right: 6px;
+  }
+  .q-type {
+    font-size: 11px;
+    color: #fff;
+    background: var(--muted);
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .q-body { margin-top: 6px; }
+  .choices { list-style: none; padding-left: 0; margin: 6px 0 0; }
+  .choices li {
+    padding: 4px 0 4px 28px;
+    position: relative;
+  }
+  .choices li::before {
+    content: attr(data-mark);
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-weight: bold;
+  }
+  .answer {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #f0fdf4;
+    border-left: 3px solid var(--ok);
+    border-radius: 4px;
+    display: none;
+  }
+  .answer.show { display: block; }
+  .answer-label { color: var(--ok); font-weight: bold; font-size: 13px; }
+  .toggle-btn {
+    border: 1px solid var(--line);
+    background: #fff;
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  .toggle-btn:hover { color: var(--ok); border-color: var(--ok); }
+  .blank {
+    display: inline-block;
+    min-width: 80px;
+    border-bottom: 1.5px solid var(--text);
+    padding: 0 4px;
+  }
+  footer {
+    margin-top: 40px;
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+  }
+  @media print {
+    .toolbar, .toggle-btn { display: none !important; }
+    body { padding: 0; font-size: 14px; max-width: none; }
+    .q { break-inside: avoid; border-color: #999; }
+    .answer { background: #fff; border-left-color: #333; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>社会 小テスト 第4回（2026-05-16 想定）</h1>
+  <div class="meta">社会 / 全 14 問 / 生成日: 2026-05-12 / 重点: 個別事実（国・国旗・人口密度）</div>
+</header>
+
+<div class="toolbar">
+  <button onclick="toggleAll(true)">全ての答えを表示</button>
+  <button onclick="toggleAll(false)">全て隠す</button>
+  <button class="primary" onclick="window.print()">印刷 / PDF</button>
+</div>
+
+<main id="questions">
+
+  <div class="q" data-no="1">
+    <div><span class="q-no">問1</span>世界で最も面積の大きい国の名前を答えなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body"></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ロシア（ロシア連邦）</div>
+  </div>
+
+  <div class="q" data-no="2">
+    <div><span class="q-no">問2</span>世界で面積の大きい上位5か国に<strong>含まれない</strong>国を次から選びなさい。<span class="q-type">選択</span></div>
+    <div class="q-body">
+      <ul class="choices">
+        <li data-mark="ア.">中国</li>
+        <li data-mark="イ.">アメリカ合衆国</li>
+        <li data-mark="ウ.">オーストラリア</li>
+        <li data-mark="エ.">ブラジル</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ウ. オーストラリア（面積上位5か国は、ロシア・カナダ・アメリカ・中国・ブラジル）</div>
+  </div>
+
+  <div class="q" data-no="3">
+    <div><span class="q-no">問3</span>国旗に「三日月と星」をモチーフにしている国を1つ答えなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body"></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> トルコ／パキスタン／サウジアラビアなど（いずれか1つ書ければ正解）</div>
+  </div>
+
+  <div class="q" data-no="4">
+    <div><span class="q-no">問4</span>国旗に「三日月と星」のモチーフを使う国に多く見られる、共通の宗教を答えなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body"></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> イスラム教（イスラーム）</div>
+  </div>
+
+  <div class="q" data-no="5">
+    <div><span class="q-no">問5</span>イギリスの国旗「ユニオンジャック」を、自国の国旗の一部に<strong>含まない</strong>国を次から選びなさい。<span class="q-type">選択</span></div>
+    <div class="q-body">
+      <ul class="choices">
+        <li data-mark="ア.">オーストラリア</li>
+        <li data-mark="イ.">ニュージーランド</li>
+        <li data-mark="ウ.">ブラジル</li>
+        <li data-mark="エ.">ツバル</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ウ. ブラジル（ブラジルは元ポルトガル領で、イギリスとの関わりはない）</div>
+  </div>
+
+  <div class="q" data-no="6">
+    <div><span class="q-no">問6</span>周囲をすべて海に囲まれた国を何というか。漢字2文字で答えなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body"></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 島国（例：日本・イギリス・ニュージーランド・フィリピンなど）</div>
+  </div>
+
+  <div class="q" data-no="7">
+    <div><span class="q-no">問7</span>周囲を全く海に面していない国の例を1つ答えなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body"></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> モンゴル／スイスなど（内陸国の例。いずれか1つで正解）</div>
+  </div>
+
+  <div class="q" data-no="8">
+    <div><span class="q-no">問8</span>次の文が正しければ「○」、誤っていれば「×」を書きなさい。<span class="q-type">正誤</span></div>
+    <div class="q-body">カナダはアメリカ合衆国よりも面積が大きい。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ○（カナダは世界第2位、アメリカは第3位）</div>
+  </div>
+
+  <div class="q" data-no="9">
+    <div><span class="q-no">問9</span>人口密度がきわめて高い国の例として正しいものを次から選びなさい。<span class="q-type">選択</span></div>
+    <div class="q-body">
+      <ul class="choices">
+        <li data-mark="ア.">モンゴル</li>
+        <li data-mark="イ.">オーストラリア</li>
+        <li data-mark="ウ.">バングラデシュ</li>
+        <li data-mark="エ.">カナダ</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ウ. バングラデシュ（狭い国土に多くの人口が集中しており、人口密度がきわめて高い）</div>
+  </div>
+
+  <div class="q" data-no="10">
+    <div><span class="q-no">問10</span>国土の面積はとても小さいが、人口密度がきわめて高いヨーロッパの小国を1つ答えなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body"></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> モナコ</div>
+  </div>
+
+  <div class="q" data-no="11">
+    <div><span class="q-no">問11</span>国土に対して人口がきわめて少なく、人口密度が低い国の例を1つ答えなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body"></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> モンゴル／オーストラリアなど（いずれか1つ）</div>
+  </div>
+
+  <div class="q" data-no="12">
+    <div><span class="q-no">問12</span>次の文が正しければ「○」、誤っていれば「×」を書きなさい。<span class="q-type">正誤</span></div>
+    <div class="q-body">日本は周囲を海に囲まれた島国である。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ○（北海道・本州・四国・九州など多くの島から成る島国）</div>
+  </div>
+
+  <div class="q" data-no="13">
+    <div><span class="q-no">問13</span>次の国のうち、内陸国（海に面していない国）はどれか。<span class="q-type">選択</span></div>
+    <div class="q-body">
+      <ul class="choices">
+        <li data-mark="ア.">日本</li>
+        <li data-mark="イ.">フィリピン</li>
+        <li data-mark="ウ.">モンゴル</li>
+        <li data-mark="エ.">インドネシア</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ウ. モンゴル（中国とロシアに囲まれた内陸国）</div>
+  </div>
+
+  <div class="q" data-no="14">
+    <div><span class="q-no">問14</span>次の文の（　）に当てはまる国名を答えなさい。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">世界で面積の大きい上位5か国のうち、唯一南アメリカ大陸にある国は（<span class="blank"></span>）である。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ブラジル（面積上位5位のうち、5番目に大きい）</div>
+  </div>
+
+</main>
+
+<footer>midterm_exam_preparation / make-test</footer>
+
+<script>
+  function toggleAnswer(btn) {
+    const ans = btn.nextElementSibling;
+    ans.classList.toggle('show');
+    btn.textContent = ans.classList.contains('show') ? '答えを隠す' : '答えを見る';
+  }
+  function toggleAll(show) {
+    document.querySelectorAll('.answer').forEach(a => a.classList.toggle('show', show));
+    document.querySelectorAll('.toggle-btn').forEach(b => {
+      b.textContent = show ? '答えを隠す' : '答えを見る';
+    });
+  }
+</script>
+</body>
+</html>

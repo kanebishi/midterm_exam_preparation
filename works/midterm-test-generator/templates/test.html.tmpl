@@ -128,6 +128,55 @@
     .q { break-inside: avoid; border-color: #999; }
     .answer { background: #fff; border-left-color: #333; }
   }
+  /* 地図問題用（社会のみ使用） */
+  .q-map {
+    margin: 12px 0 6px;
+    text-align: center;
+  }
+  .q-map svg {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: #f8fafc;
+  }
+  .map-marker {
+    fill: #ef4444;
+    stroke: #fff;
+    stroke-width: 2;
+  }
+  .map-num {
+    fill: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    text-anchor: middle;
+    dominant-baseline: central;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    pointer-events: none;
+  }
+  .q-map-point {
+    fill: #2563eb;
+    stroke: #fff;
+    stroke-width: 1.5;
+  }
+  .q-map-label {
+    fill: #1e3a8a;
+    font-weight: bold;
+    font-size: 13px;
+    text-anchor: middle;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    pointer-events: none;
+  }
+  .map-highlight {
+    stroke: #ef4444;
+    stroke-width: 2.5;
+    fill: none;
+    stroke-dasharray: none;
+  }
+  @media print {
+    .q-map svg { background: #fff; max-width: 100%; }
+  }
 </style>
 </head>
 <body>

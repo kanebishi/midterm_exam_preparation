@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>社会 小テスト 第2回（2026-05-13 想定）</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --accent: #2563eb;
+    --accent-soft: #dbeafe;
+    --ok: #16a34a;
+    --text: #0f172a;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --bg: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+    font-size: 17px;
+  }
+  header {
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+  }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .meta { color: var(--muted); font-size: 13px; }
+  .toolbar {
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 0;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    z-index: 10;
+  }
+  .toolbar button {
+    border: 1px solid var(--accent);
+    background: #fff;
+    color: var(--accent);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .toolbar button:hover { background: var(--accent-soft); }
+  .toolbar button.primary { background: var(--accent); color: #fff; }
+  .q {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    page-break-inside: avoid;
+  }
+  .q-no {
+    font-weight: bold;
+    color: var(--accent);
+    margin-right: 6px;
+  }
+  .q-type {
+    font-size: 11px;
+    color: #fff;
+    background: var(--muted);
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .q-body { margin-top: 6px; }
+  .choices { list-style: none; padding-left: 0; margin: 6px 0 0; }
+  .choices li {
+    padding: 4px 0 4px 28px;
+    position: relative;
+  }
+  .choices li::before {
+    content: attr(data-mark);
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-weight: bold;
+  }
+  .answer {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #f0fdf4;
+    border-left: 3px solid var(--ok);
+    border-radius: 4px;
+    display: none;
+  }
+  .answer.show { display: block; }
+  .answer-label { color: var(--ok); font-weight: bold; font-size: 13px; }
+  .toggle-btn {
+    border: 1px solid var(--line);
+    background: #fff;
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  .toggle-btn:hover { color: var(--ok); border-color: var(--ok); }
+  .blank {
+    display: inline-block;
+    min-width: 80px;
+    border-bottom: 1.5px solid var(--text);
+    padding: 0 4px;
+  }
+  footer {
+    margin-top: 40px;
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+  }
+  @media print {
+    .toolbar, .toggle-btn { display: none !important; }
+    body { padding: 0; font-size: 14px; max-width: none; }
+    .q { break-inside: avoid; border-color: #999; }
+    .answer { background: #fff; border-left-color: #333; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>社会 小テスト 第2回（2026-05-13 想定）</h1>
+  <div class="meta">社会 / 全 15 問 / 生成日: 2026-05-12 / 重点: 用語と数値の定着</div>
+</header>
+
+<div class="toolbar">
+  <button onclick="toggleAll(true)">全ての答えを表示</button>
+  <button onclick="toggleAll(false)">全て隠す</button>
+  <button class="primary" onclick="window.print()">印刷 / PDF</button>
+</div>
+
+<main id="questions">
+
+  <div class="q" data-no="1">
+    <div><span class="q-no">問1</span>次の文の（　）に当てはまる数字を答えなさい。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">本初子午線は経度（<span class="blank"></span>）度の線である。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 0</div>
+  </div>
+
+  <div class="q" data-no="2">
+    <div><span class="q-no">問2</span>次の文の（　）に当てはまる語を答えなさい。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">緯度0度の線のことを（<span class="blank"></span>）という。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 赤道</div>
+  </div>
+
+  <div class="q" data-no="3">
+    <div><span class="q-no">問3</span>国際連合（国連）に加盟している国の数はおよそ何か国か。<span class="q-type">一問一答</span></div>
+    <div class="q-body"></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 約190か国（正確には約193か国）</div>
+  </div>
+
+  <div class="q" data-no="4">
+    <div><span class="q-no">問4</span>六大陸のうち、もっとも面積が大きい大陸の名前を答えなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body"></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ユーラシア大陸</div>
+  </div>
+
+  <div class="q" data-no="5">
+    <div><span class="q-no">問5</span>本初子午線から西側の経度を何というか。漢字2文字で答えなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body"></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 西経（東側は東経）</div>
+  </div>
+
+  <div class="q" data-no="6">
+    <div><span class="q-no">問6</span>北回帰線はおよそ北緯何度の線か。次から選びなさい。<span class="q-type">選択</span></div>
+    <div class="q-body">
+      <ul class="choices">
+        <li data-mark="ア.">北緯0度</li>
+        <li data-mark="イ.">北緯23.5度</li>
+        <li data-mark="ウ.">北緯45度</li>
+        <li data-mark="エ.">北緯66.5度</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> イ. 北緯23.5度（南半球側の南緯23.5度の線は南回帰線）</div>
+  </div>
+
+  <div class="q" data-no="7">
+    <div><span class="q-no">問7</span>地球を「南北」に分けるとき基準になるのは、緯度と経度のどちらか。<span class="q-type">選択</span></div>
+    <div class="q-body">
+      <ul class="choices">
+        <li data-mark="ア.">緯度</li>
+        <li data-mark="イ.">経度</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ア. 緯度（赤道を境に北半球・南半球に分かれる。経度は東西の位置を表す）</div>
+  </div>
+
+  <div class="q" data-no="8">
+    <div><span class="q-no">問8</span>次の文が正しければ「○」、誤っていれば「×」を書きなさい。<span class="q-type">正誤</span></div>
+    <div class="q-body">赤道は北アメリカ大陸を通過している。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ×（赤道は南アメリカ大陸・アフリカ大陸・東南アジア付近を通り、北アメリカ大陸は通らない）</div>
+  </div>
+
+  <div class="q" data-no="9">
+    <div><span class="q-no">問9</span>次の文が正しければ「○」、誤っていれば「×」を書きなさい。<span class="q-type">正誤</span></div>
+    <div class="q-body">経度は、本初子午線を0度として、東西をそれぞれ180度に分けた線である。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ○（東側を東経、西側を西経という）</div>
+  </div>
+
+  <div class="q" data-no="10">
+    <div><span class="q-no">問10</span>次の文の（　）に当てはまる数字を答えなさい。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">地球を1周するときの距離は、およそ（<span class="blank"></span>）万kmである。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 4（約4万km＝約40,000km）</div>
+  </div>
+
+  <div class="q" data-no="11">
+    <div><span class="q-no">問11</span>次の文の（　）に当てはまる数字を答えなさい。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">地球の表面の海洋と陸地の面積比は、およそ海:陸 =（<span class="blank"></span>）:（<span class="blank"></span>）である。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 7 : 3（海洋のほうが広く、地表の約7割を占める）</div>
+  </div>
+
+  <div class="q" data-no="12">
+    <div><span class="q-no">問12</span>地球儀の長所を1つ、簡潔に答えなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body"></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 距離・方位・面積・形のすべてを正しく表せる（地球をそのまま縮めた模型だから）</div>
+  </div>
+
+  <div class="q" data-no="13">
+    <div><span class="q-no">問13</span>本初子午線が通る国として正しいものを次から選びなさい。<span class="q-type">選択</span></div>
+    <div class="q-body">
+      <ul class="choices">
+        <li data-mark="ア.">フランス</li>
+        <li data-mark="イ.">イタリア</li>
+        <li data-mark="ウ.">イギリス</li>
+        <li data-mark="エ.">ドイツ</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ウ. イギリス（ロンドン郊外の旧グリニッジ天文台を通る経度0度の線）</div>
+  </div>
+
+  <div class="q" data-no="14">
+    <div><span class="q-no">問14</span>次の文が正しければ「○」、誤っていれば「×」を書きなさい。<span class="q-type">正誤</span></div>
+    <div class="q-body">六大陸の中で最も面積が小さいのは南極大陸である。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ×（最も小さいのはオーストラリア大陸。南極大陸はオーストラリアより大きい）</div>
+  </div>
+
+  <div class="q" data-no="15">
+    <div><span class="q-no">問15</span>地球上を横に走る線（緯線）と縦に走る線（経線）のうち、「緯度」を示すのはどちらか。漢字2文字で答えなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body"></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 緯線（横の線。経線は縦＝南北の線で経度を示す）</div>
+  </div>
+
+</main>
+
+<footer>midterm_exam_preparation / make-test</footer>
+
+<script>
+  function toggleAnswer(btn) {
+    const ans = btn.nextElementSibling;
+    ans.classList.toggle('show');
+    btn.textContent = ans.classList.contains('show') ? '答えを隠す' : '答えを見る';
+  }
+  function toggleAll(show) {
+    document.querySelectorAll('.answer').forEach(a => a.classList.toggle('show', show));
+    document.querySelectorAll('.toggle-btn').forEach(b => {
+      b.textContent = show ? '答えを隠す' : '答えを見る';
+    });
+  }
+</script>
+</body>
+</html>

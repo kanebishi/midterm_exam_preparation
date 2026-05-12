@@ -57,6 +57,7 @@ description: 中学生向けの小テストHTMLを教科ごとに生成する。
   - **数学**: 計算問題（符号付き加減乗除）／絶対値 / 大小比較 / 用語の意味
   - **理科**: 用語の意味 / 図中の名称 / 正誤判定で混同しやすい概念を突く
   - **社会**: 地名・用語の意味 / 地図上の位置 / 年号・出来事
+    - **インライン SVG 地図を使った問題**を 2〜4問混ぜる（詳細は後述「社会の地図問題の作り方」）
 - 各問題には必ず**答え**もセットで生成する（解説が必要なら短く添える）
 
 ### 3. HTML を組み立てる
@@ -74,6 +75,7 @@ description: 中学生向けの小テストHTMLを教科ごとに生成する。
   - 一問一答: `<span class="q-type">一問一答</span>`
   - 選択式: `<span class="q-type">選択</span>` + `<ul class="choices">` で選択肢
   - 正誤判定: `<span class="q-type">正誤</span>`
+  - 地図（社会のみ）: `<span class="q-type">地図</span>` + `<figure class="q-map">` 内にインライン SVG（後述）
 - 各問題に「答えを見る」トグル（`<button class="toggle-btn">` と `<div class="answer">`）を必ず付ける
 
 ### 4. ファイルを書き出す
@@ -97,6 +99,116 @@ description: 中学生向けの小テストHTMLを教科ごとに生成する。
 - 問題数と内訳（例: 穴埋め5 / 一問一答6 / 選択3 / 正誤2 = 計16問）
 - ブラウザで開くコマンド：`open <パス>`
 - 印刷したい場合の案内：「ブラウザで開いて、ツールバーの『印刷 / PDF』ボタンを押すと印刷ダイアログが出ます」
+
+## 社会の地図問題の作り方
+
+社会（`subjects/social-studies.md`）の小テストを作るときのみ適用。他教科では使わない。
+
+### 推奨出題数
+
+10〜20問のうち **2〜4問** を地図問題にする。テキスト問題とのバランスをとる。
+
+### 使う資材
+
+- `works/midterm-test-generator/maps/world-base.svg` — ベース世界地図（viewBox `0 0 1000 500`、等距円筒図法）
+- `works/midterm-test-generator/maps/coords.md` — 大陸・海洋・主要国・主要緯線経線の座標参照テーブル
+
+### 手順
+
+1. **ベース SVG を Read** で読み込み、`<svg>` の**中身**（`<rect>` から最後の `</g>` までの内側要素群）を取得する
+2. **coords.md を Read** で読み込み、出題内容に応じた座標を取得する
+3. HTML の `<body>` 冒頭付近に、地図定義用の**隠し SVG** を1つだけ配置する：
+
+   ```html
+   <svg width="0" height="0" aria-hidden="true" style="position:absolute" xmlns="http://www.w3.org/2000/svg">
+     <defs>
+       <g id="world-map-defn">
+         <!-- world-base.svg の <svg> 内側要素をここに丸ごとコピー -->
+       </g>
+     </defs>
+   </svg>
+   ```
+
+4. 各地図問題では、別の `<svg>` を作って `<use href="#world-map-defn"/>` で参照したうえで、マーカー要素を追加する（後述）
+5. 問題ブロック構造に組み込む
+
+**なぜ `<use>` 方式か：** 地図問題が複数あっても、ベース地図の本体は1コピーで済む。3問とも完全インラインだとHTMLが3〜4倍に膨らむ。`<use>` は同一ドキュメント内参照なので外部リソース禁止ルールには触れない。
+
+### マーカーの3パターン
+
+#### A. 番号マーカー（大陸・海洋・国の位置同定）
+
+「①〜⑥の大陸名を答えよ」のような問題で使う。`<circle>` と `<text>` のペア：
+
+```html
+<circle cx="722" cy="111" r="14" class="map-marker"/>
+<text x="722" y="111" class="map-num">1</text>
+```
+
+- 円の半径は `r="14"` 固定
+- text は `dominant-baseline: central` で円の中央に番号が来る
+- 番号は `1` から始まり、問題内で連番
+
+#### B. 緯度経度ポイント（読み取り問題）
+
+「点 P の緯度経度を答えよ」のような問題：
+
+```html
+<circle cx="583" cy="185" r="5" class="q-map-point"/>
+<text x="583" y="175" class="q-map-label">P</text>
+```
+
+- ポイントは半径5px、青色
+- ラベル文字（P, Q など）は点の少し上に配置（y を -10）
+
+#### C. 強調ハイライト（緯線・経線の同定）
+
+「強調されている線A・Bは何か」のような問題。既存の緯線・経線の上から赤い線を重ねる：
+
+```html
+<line x1="0" y1="250" x2="1000" y2="250" class="map-highlight"/>
+<text x="20" y="245" class="q-map-label">A</text>
+```
+
+### 問題ブロック構造（地図問題）
+
+```html
+<div class="q" data-no="N">
+  <div><span class="q-no">問N</span>地図中の①〜③の大陸名を答えなさい。<span class="q-type">地図</span></div>
+  <div class="q-body">
+    <figure class="q-map">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet">
+        <use href="#world-map-defn"/>
+        <circle cx="722" cy="111" r="14" class="map-marker"/>
+        <text x="722" y="111" class="map-num">1</text>
+        <circle cx="556" cy="236" r="14" class="map-marker"/>
+        <text x="556" y="236" class="map-num">2</text>
+        <circle cx="222" cy="125" r="14" class="map-marker"/>
+        <text x="222" y="125" class="map-num">3</text>
+      </svg>
+    </figure>
+  </div>
+  <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+  <div class="answer"><span class="answer-label">答え:</span> ①ユーラシア大陸 ②アフリカ大陸 ③北アメリカ大陸</div>
+</div>
+```
+
+### 地図問題の出題テーマ例
+
+`subjects/social-studies.md` の範囲に対応したテーマ：
+
+- **六大陸の位置同定**：ユーラシア・アフリカ・北アメリカ・南アメリカ・オーストラリア・南極のうちランダムに3〜6個に番号を振る
+- **三大洋の位置同定**：太平洋・大西洋・インド洋に番号を振る
+- **緯度経度の読み取り**：coords.md「緯度経度ポイント例」から1〜2点を選んで配置し、緯度経度を答えさせる
+- **主要緯線・経線の同定**：赤道・北回帰線・南回帰線・本初子午線などをハイライトして名前を答えさせる
+- **主要国の位置同定**：日本・中国・アメリカ・ブラジルなど範囲メモで重視されている国に番号を振る
+
+### 重要な制約
+
+- **外部 SVG 参照は禁止**（`<img src="...svg">` や `<use href="...">` ともに不可）。必ず SVG の中身を HTML にインライン展開すること
+- マーカー座標は `coords.md` から取得する。**勝手な座標を作らない**（精度の保証が崩れる）
+- 番号マーカーが**陸地ではなく海上に乗らないように**注意する（特に小さな国・島国の場合）。配置後に座標を再確認する
+- 地図問題1問あたりのマーカーは **最大6個** に抑える（多すぎると視認性が落ちる）
 
 ## 重要な注意事項
 

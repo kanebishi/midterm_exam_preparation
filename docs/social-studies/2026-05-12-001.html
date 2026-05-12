@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>社会 小テスト（2026-05-12）</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --accent: #2563eb;
+    --accent-soft: #dbeafe;
+    --ok: #16a34a;
+    --text: #0f172a;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --bg: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+    font-size: 17px;
+  }
+  header {
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+  }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .meta { color: var(--muted); font-size: 13px; }
+  .toolbar {
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 0;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    z-index: 10;
+  }
+  .toolbar button {
+    border: 1px solid var(--accent);
+    background: #fff;
+    color: var(--accent);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .toolbar button:hover { background: var(--accent-soft); }
+  .toolbar button.primary { background: var(--accent); color: #fff; }
+  .q {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    page-break-inside: avoid;
+  }
+  .q-no {
+    font-weight: bold;
+    color: var(--accent);
+    margin-right: 6px;
+  }
+  .q-type {
+    font-size: 11px;
+    color: #fff;
+    background: var(--muted);
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .q-body { margin-top: 6px; }
+  .choices { list-style: none; padding-left: 0; margin: 6px 0 0; }
+  .choices li {
+    padding: 4px 0 4px 28px;
+    position: relative;
+  }
+  .choices li::before {
+    content: attr(data-mark);
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-weight: bold;
+  }
+  .answer {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #f0fdf4;
+    border-left: 3px solid var(--ok);
+    border-radius: 4px;
+    display: none;
+  }
+  .answer.show { display: block; }
+  .answer-label { color: var(--ok); font-weight: bold; font-size: 13px; }
+  .toggle-btn {
+    border: 1px solid var(--line);
+    background: #fff;
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  .toggle-btn:hover { color: var(--ok); border-color: var(--ok); }
+  .blank {
+    display: inline-block;
+    min-width: 80px;
+    border-bottom: 1.5px solid var(--text);
+    padding: 0 4px;
+  }
+  footer {
+    margin-top: 40px;
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+  }
+  @media print {
+    .toolbar, .toggle-btn { display: none !important; }
+    body { padding: 0; font-size: 14px; max-width: none; }
+    .q { break-inside: avoid; border-color: #999; }
+    .answer { background: #fff; border-left-color: #333; }
+  }
+  .q-map {
+    margin: 12px 0 6px;
+    text-align: center;
+  }
+  .q-map svg {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: #f8fafc;
+  }
+  .map-marker {
+    fill: #ef4444;
+    stroke: #fff;
+    stroke-width: 2;
+  }
+  .map-num {
+    fill: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    text-anchor: middle;
+    dominant-baseline: central;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    pointer-events: none;
+  }
+  .q-map-point {
+    fill: #2563eb;
+    stroke: #fff;
+    stroke-width: 1.5;
+  }
+  .q-map-label {
+    fill: #1e3a8a;
+    font-weight: bold;
+    font-size: 13px;
+    text-anchor: middle;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    pointer-events: none;
+  }
+  .map-highlight {
+    stroke: #ef4444;
+    stroke-width: 2.5;
+    fill: none;
+    stroke-dasharray: none;
+  }
+  @media print {
+    .q-map svg { background: #fff; max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 地図問題で再利用するベース世界地図定義（非表示） -->
+<svg width="0" height="0" aria-hidden="true" style="position:absolute" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="world-map-defn">
+      <rect width="1000" height="500" fill="#cfe2f3"/>
+      <g stroke="#cbd5e1" stroke-width="0.5" fill="none">
+        <line x1="0" y1="83" x2="1000" y2="83"/>
+        <line x1="0" y1="167" x2="1000" y2="167"/>
+        <line x1="0" y1="333" x2="1000" y2="333"/>
+        <line x1="0" y1="417" x2="1000" y2="417"/>
+        <line x1="83" y1="0" x2="83" y2="500"/>
+        <line x1="167" y1="0" x2="167" y2="500"/>
+        <line x1="250" y1="0" x2="250" y2="500"/>
+        <line x1="333" y1="0" x2="333" y2="500"/>
+        <line x1="417" y1="0" x2="417" y2="500"/>
+        <line x1="583" y1="0" x2="583" y2="500"/>
+        <line x1="667" y1="0" x2="667" y2="500"/>
+        <line x1="750" y1="0" x2="750" y2="500"/>
+        <line x1="833" y1="0" x2="833" y2="500"/>
+        <line x1="917" y1="0" x2="917" y2="500"/>
+      </g>
+      <g stroke="#94a3b8" stroke-width="0.7" stroke-dasharray="4 3" fill="none">
+        <line x1="0" y1="65" x2="1000" y2="65"/>
+        <line x1="0" y1="185" x2="1000" y2="185"/>
+        <line x1="0" y1="315" x2="1000" y2="315"/>
+        <line x1="0" y1="435" x2="1000" y2="435"/>
+      </g>
+      <g stroke="#475569" stroke-width="1.2" fill="none">
+        <line x1="0" y1="250" x2="1000" y2="250"/>
+        <line x1="500" y1="0" x2="500" y2="500"/>
+      </g>
+      <g fill="#fef3c7" stroke="#78350f" stroke-width="1" stroke-linejoin="round">
+        <path d="M 475 142 L 492 128 L 486 117 L 506 108 L 519 103 L 525 92 L 550 86 L 561 69 L 564 61 L 553 56 L 572 53 L 592 58 L 628 61 L 694 50 L 789 36 L 856 47 L 972 56 L 994 72 L 936 108 L 892 103 L 867 131 L 858 153 L 839 164 L 817 189 L 792 225 L 789 247 L 767 206 L 753 189 L 714 228 L 703 197 L 686 181 L 667 181 L 664 189 L 625 217 L 608 189 L 594 172 L 597 161 L 589 150 L 567 147 L 550 139 L 542 144 L 539 136 L 525 128 L 514 131 L 500 142 L 486 150 Z"/>
+        <path d="M 483 150 L 528 147 L 536 158 L 583 164 L 592 172 L 603 197 L 608 206 L 619 217 L 642 217 L 625 244 L 611 261 L 608 269 L 597 319 L 592 322 L 586 333 L 550 344 L 539 314 L 536 275 L 533 264 L 525 239 L 519 239 L 508 233 L 500 236 L 494 236 L 489 236 L 472 233 L 461 225 L 453 211 L 453 192 L 456 175 L 475 167 L 481 158 Z"/>
+        <path d="M 64 53 L 122 56 L 222 56 L 239 78 L 264 108 L 283 78 L 322 83 L 353 119 L 322 125 L 306 133 L 294 136 L 289 153 L 278 178 L 275 181 L 272 172 L 250 167 L 258 192 L 250 200 L 256 203 L 283 225 L 278 228 L 264 222 L 222 203 L 206 186 L 194 186 L 175 158 L 172 156 L 161 144 L 158 114 L 83 81 L 42 72 L 31 67 Z"/>
+        <path d="M 300 217 L 314 219 L 328 219 L 339 231 L 356 236 L 361 250 L 403 272 L 394 286 L 381 314 L 372 317 L 364 328 L 342 356 L 328 358 L 319 367 L 314 378 L 303 397 L 314 406 L 297 400 L 294 394 L 294 367 L 300 342 L 303 314 L 306 303 L 286 283 L 278 256 L 275 250 L 281 244 L 286 239 L 286 231 L 292 219 Z"/>
+        <path d="M 894 281 L 903 294 L 906 297 L 925 325 L 919 344 L 906 358 L 883 347 L 878 347 L 861 339 L 839 344 L 828 347 L 819 344 L 822 339 L 819 331 L 817 322 L 817 311 L 831 306 L 839 300 L 844 289 L 864 283 L 881 283 L 881 294 L 889 297 L 892 294 Z"/>
+        <path d="M 0 431 L 56 458 L 167 453 L 250 458 L 333 431 L 417 450 L 500 442 L 583 444 L 667 436 L 750 436 L 833 433 L 917 444 L 1000 431 L 1000 500 L 0 500 Z"/>
+        <path d="M 486 86 L 494 92 L 494 97 L 506 103 L 503 108 L 492 111 L 486 111 L 486 103 L 492 103 L 486 94 L 483 89 Z"/>
+        <path d="M 478 97 L 483 103 L 481 106 L 478 108 L 472 108 L 472 103 L 475 97 Z"/>
+        <path d="M 894 125 L 903 128 L 894 142 L 892 153 L 878 158 L 869 158 L 864 164 L 861 158 L 864 156 L 872 150 L 886 144 L 889 139 L 889 133 L 892 131 Z"/>
+        <path d="M 692 283 L 694 294 L 694 306 L 686 319 L 681 322 L 678 311 L 675 303 L 678 289 Z"/>
+        <path d="M 864 250 L 872 258 L 883 258 L 903 264 L 917 278 L 906 278 L 894 272 L 883 272 L 872 264 Z"/>
+        <path d="M 981 344 L 994 356 L 986 364 L 983 358 L 983 350 Z"/>
+        <path d="M 986 367 L 981 372 L 967 381 L 967 372 L 978 364 Z"/>
+        <path d="M 447 67 L 461 69 L 461 72 L 447 75 L 433 72 L 436 69 Z"/>
+        <path d="M 778 222 L 783 231 L 781 233 L 778 231 Z"/>
+        <path d="M 764 233 L 775 239 L 794 267 L 789 267 L 778 261 L 769 247 Z"/>
+        <path d="M 792 267 L 817 269 L 819 272 L 803 272 Z"/>
+        <path d="M 825 231 L 831 236 L 831 247 L 825 258 L 814 261 L 806 256 L 803 244 L 814 231 Z"/>
+        <path d="M 836 200 L 839 203 L 844 214 L 850 231 L 847 233 L 839 231 L 836 211 Z"/>
+        <path d="M 400 17 L 439 22 L 439 56 L 394 69 L 378 83 L 361 78 L 353 56 L 308 39 Z"/>
+        <path d="M 897 100 L 900 108 L 900 122 L 894 122 L 894 111 L 892 100 Z"/>
+      </g>
+      <rect x="0" y="0" width="1000" height="500" fill="none" stroke="#475569" stroke-width="1.2"/>
+    </g>
+  </defs>
+</svg>
+
+<header>
+  <h1>社会 小テスト（2026-05-12）</h1>
+  <div class="meta">社会 / 全 10 問 / 生成日: 2026-05-12</div>
+</header>
+
+<div class="toolbar">
+  <button onclick="toggleAll(true)">全ての答えを表示</button>
+  <button onclick="toggleAll(false)">全て隠す</button>
+  <button class="primary" onclick="window.print()">印刷 / PDF</button>
+</div>
+
+<main id="questions">
+
+  <div class="q" data-no="1">
+    <div><span class="q-no">問1</span>次の文の（　）に当てはまる数字を答えなさい。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">赤道は緯度（<span class="blank"></span>）度の線である。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 0</div>
+  </div>
+
+  <div class="q" data-no="2">
+    <div><span class="q-no">問2</span>三大洋の名前を全て答えなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">（3つ書く）</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 太平洋・大西洋・インド洋</div>
+  </div>
+
+  <div class="q" data-no="3">
+    <div><span class="q-no">問3</span>本初子午線（経度0度の線）が通っていたのは、次のうちどの天文台か。<span class="q-type">選択</span></div>
+    <div class="q-body">
+      <ul class="choices">
+        <li data-mark="ア.">パリ天文台</li>
+        <li data-mark="イ.">グリニッジ天文台</li>
+        <li data-mark="ウ.">ローマ天文台</li>
+        <li data-mark="エ.">ベルリン天文台</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> イ. グリニッジ天文台（イギリス・ロンドン郊外）</div>
+  </div>
+
+  <div class="q" data-no="4">
+    <div><span class="q-no">問4</span>地図中の①〜④の大陸名をそれぞれ答えなさい。<span class="q-type">地図</span></div>
+    <div class="q-body">
+      <figure class="q-map">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet">
+          <use href="#world-map-defn"/>
+          <circle cx="722" cy="111" r="14" class="map-marker"/>
+          <text x="722" y="111" class="map-num">1</text>
+          <circle cx="556" cy="236" r="14" class="map-marker"/>
+          <text x="556" y="236" class="map-num">2</text>
+          <circle cx="222" cy="125" r="14" class="map-marker"/>
+          <text x="222" y="125" class="map-num">3</text>
+          <circle cx="333" cy="292" r="14" class="map-marker"/>
+          <text x="333" y="292" class="map-num">4</text>
+        </svg>
+      </figure>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ①ユーラシア大陸 ②アフリカ大陸 ③北アメリカ大陸 ④南アメリカ大陸</div>
+  </div>
+
+  <div class="q" data-no="5">
+    <div><span class="q-no">問5</span>地球を1周するときのおおよその距離は何kmか。<span class="q-type">一問一答</span></div>
+    <div class="q-body">（単位もつけて答える）</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 約4万km（約40,000km）</div>
+  </div>
+
+  <div class="q" data-no="6">
+    <div><span class="q-no">問6</span>次の文が正しければ「○」、誤っていれば「×」を書きなさい。<span class="q-type">正誤</span></div>
+    <div class="q-body">海洋と陸地の面積の割合はおよそ「海:陸 = 7:3」であり、海洋のほうが広い。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ○（海:陸 ≒ 7:3。地球表面の約7割は海）</div>
+  </div>
+
+  <div class="q" data-no="7">
+    <div><span class="q-no">問7</span>地図中の点 P と点 Q の緯度・経度をそれぞれ答えなさい。<span class="q-type">地図</span></div>
+    <div class="q-body">
+      <figure class="q-map">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet">
+          <use href="#world-map-defn"/>
+          <circle cx="500" cy="250" r="6" class="q-map-point"/>
+          <text x="500" y="240" class="q-map-label">P</text>
+          <circle cx="583" cy="185" r="6" class="q-map-point"/>
+          <text x="583" y="175" class="q-map-label">Q</text>
+        </svg>
+      </figure>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> P: 緯度0度・経度0度（赤道と本初子午線の交点）／ Q: 北緯23.5度・東経30度（北回帰線上）</div>
+  </div>
+
+  <div class="q" data-no="8">
+    <div><span class="q-no">問8</span>イギリスの国旗（ユニオンジャック）を、自国の国旗の一部に取り入れている国の組み合わせとして正しいものを選びなさい。<span class="q-type">選択</span></div>
+    <div class="q-body">
+      <ul class="choices">
+        <li data-mark="ア.">オーストラリア・ニュージーランド・フィジー</li>
+        <li data-mark="イ.">インド・パキスタン・バングラデシュ</li>
+        <li data-mark="ウ.">ブラジル・アルゼンチン・チリ</li>
+        <li data-mark="エ.">日本・韓国・タイ</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ア（いずれもかつてイギリスとの関わりが強く、国旗にユニオンジャックを含む）</div>
+  </div>
+
+  <div class="q" data-no="9">
+    <div><span class="q-no">問9</span>周囲を全く海に面していない国を何というか。漢字3文字で答えなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body"></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 内陸国（例：モンゴル、スイスなど）</div>
+  </div>
+
+  <div class="q" data-no="10">
+    <div><span class="q-no">問10</span>地図中の①〜③の海洋の名前をそれぞれ答えなさい。<span class="q-type">地図</span></div>
+    <div class="q-body">
+      <figure class="q-map">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" preserveAspectRatio="xMidYMid meet">
+          <use href="#world-map-defn"/>
+          <circle cx="140" cy="240" r="14" class="map-marker"/>
+          <text x="140" y="240" class="map-num">1</text>
+          <circle cx="430" cy="240" r="14" class="map-marker"/>
+          <text x="430" y="240" class="map-num">2</text>
+          <circle cx="700" cy="320" r="14" class="map-marker"/>
+          <text x="700" y="320" class="map-num">3</text>
+        </svg>
+      </figure>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ①太平洋 ②大西洋 ③インド洋</div>
+  </div>
+
+</main>
+
+<footer>midterm_exam_preparation / make-test</footer>
+
+<script>
+  function toggleAnswer(btn) {
+    const ans = btn.nextElementSibling;
+    ans.classList.toggle('show');
+    btn.textContent = ans.classList.contains('show') ? '答えを隠す' : '答えを見る';
+  }
+  function toggleAll(show) {
+    document.querySelectorAll('.answer').forEach(a => a.classList.toggle('show', show));
+    document.querySelectorAll('.toggle-btn').forEach(b => {
+      b.textContent = show ? '答えを隠す' : '答えを見る';
+    });
+  }
+</script>
+</body>
+</html>

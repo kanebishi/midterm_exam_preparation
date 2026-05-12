@@ -6,7 +6,10 @@
       "WebFetch(domain:krdkrk.jp)",
       "WebFetch(domain:www.shugakusha.co.jp)",
       "Bash(python3 *)",
-      "Bash(git *)"
+      "Bash(git *)",
+      "Bash(xmllint --noout /Users/kanebishi/Repositories/midterm_exam_preparation/works/midterm-test-generator/maps/world-base.svg)",
+      "Bash(xmllint --html --noout docs/social-studies/2026-05-12-001.html)",
+      "Bash(open *)"
     ]
   }
 }
