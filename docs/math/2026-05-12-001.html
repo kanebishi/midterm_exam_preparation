@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>数学 小テスト（2026-05-12）</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --accent: #2563eb;
+    --accent-soft: #dbeafe;
+    --ok: #16a34a;
+    --text: #0f172a;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --bg: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+    font-size: 17px;
+  }
+  header {
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+  }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .meta { color: var(--muted); font-size: 13px; }
+  .toolbar {
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 0;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    z-index: 10;
+  }
+  .toolbar button {
+    border: 1px solid var(--accent);
+    background: #fff;
+    color: var(--accent);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .toolbar button:hover { background: var(--accent-soft); }
+  .toolbar button.primary { background: var(--accent); color: #fff; }
+  .q {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    page-break-inside: avoid;
+  }
+  .q-no {
+    font-weight: bold;
+    color: var(--accent);
+    margin-right: 6px;
+  }
+  .q-type {
+    font-size: 11px;
+    color: #fff;
+    background: var(--muted);
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .q-body { margin-top: 6px; }
+  .choices { list-style: none; padding-left: 0; margin: 6px 0 0; }
+  .choices li {
+    padding: 4px 0 4px 28px;
+    position: relative;
+  }
+  .choices li::before {
+    content: attr(data-mark);
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-weight: bold;
+  }
+  .answer {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #f0fdf4;
+    border-left: 3px solid var(--ok);
+    border-radius: 4px;
+    display: none;
+  }
+  .answer.show { display: block; }
+  .answer-label { color: var(--ok); font-weight: bold; font-size: 13px; }
+  .toggle-btn {
+    border: 1px solid var(--line);
+    background: #fff;
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  .toggle-btn:hover { color: var(--ok); border-color: var(--ok); }
+  .blank {
+    display: inline-block;
+    min-width: 80px;
+    border-bottom: 1.5px solid var(--text);
+    padding: 0 4px;
+  }
+  footer {
+    margin-top: 40px;
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+  }
+  @media print {
+    .toolbar, .toggle-btn { display: none !important; }
+    body { padding: 0; font-size: 14px; max-width: none; }
+    .q { break-inside: avoid; border-color: #999; }
+    .answer { background: #fff; border-left-color: #333; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>数学 小テスト（2026-05-12）</h1>
+  <div class="meta">数学 / 全 16 問 / 生成日: 2026-05-12</div>
+</header>
+
+<div class="toolbar">
+  <button onclick="toggleAll(true)">全ての答えを表示</button>
+  <button onclick="toggleAll(false)">全て隠す</button>
+  <button class="primary" onclick="window.print()">印刷 / PDF</button>
+</div>
+
+<main id="questions">
+
+  <div class="q" data-no="1">
+    <div><span class="q-no">問1</span>次の（　）に当てはまる数を、符号をつけて答えなさい。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">0 より 7 大きい数は（<span class="blank"></span>）、0 より 7 小さい数は（<span class="blank"></span>）である。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> +7 、 -7</div>
+  </div>
+
+  <div class="q" data-no="2">
+    <div><span class="q-no">問2</span>次の数の絶対値を答えなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">-12</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 12</div>
+  </div>
+
+  <div class="q" data-no="3">
+    <div><span class="q-no">問3</span>次の4つの数のうち、最も大きい数を選びなさい。<span class="q-type">選択</span></div>
+    <div class="q-body">
+      <ul class="choices">
+        <li data-mark="ア.">-5</li>
+        <li data-mark="イ.">-2</li>
+        <li data-mark="ウ.">+1</li>
+        <li data-mark="エ.">-8</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ウ. +1（正の数は負の数より大きい）</div>
+  </div>
+
+  <div class="q" data-no="4">
+    <div><span class="q-no">問4</span>次の文が正しければ「○」、誤っていれば「×」を書きなさい。<span class="q-type">正誤</span></div>
+    <div class="q-body">「-3 は -5 より小さい」</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ×（数直線上で -3 は -5 より右にあるので、-3 のほうが大きい。-5 &lt; -3）</div>
+  </div>
+
+  <div class="q" data-no="5">
+    <div><span class="q-no">問5</span>次の計算をしなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">(+4) + (+9)</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> +13（同符号の和：絶対値の和に共通の符号 +）</div>
+  </div>
+
+  <div class="q" data-no="6">
+    <div><span class="q-no">問6</span>次の計算をしなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">(-6) + (-7)</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> -13（同符号の和：絶対値の和に共通の符号 -）</div>
+  </div>
+
+  <div class="q" data-no="7">
+    <div><span class="q-no">問7</span>次の計算をしなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">(-8) + (+3)</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> -5（異符号の和：絶対値の差 8 - 3 = 5、符号は絶対値の大きい -8 の符号 -）</div>
+  </div>
+
+  <div class="q" data-no="8">
+    <div><span class="q-no">問8</span>次の（　）に当てはまる数を答えなさい。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">(+5) + (-9) = （<span class="blank"></span>）</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> -4（異符号の和：9 - 5 = 4、符号は絶対値の大きい -9 の符号 -）</div>
+  </div>
+
+  <div class="q" data-no="9">
+    <div><span class="q-no">問9</span>(+7) - (+10) の答えとして正しいものを選びなさい。<span class="q-type">選択</span></div>
+    <div class="q-body">
+      <ul class="choices">
+        <li data-mark="ア.">-3</li>
+        <li data-mark="イ.">+3</li>
+        <li data-mark="ウ.">-17</li>
+        <li data-mark="エ.">+17</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ア. -3（ひく数の符号を変えて加法に直す: (+7) + (-10) = -3）</div>
+  </div>
+
+  <div class="q" data-no="10">
+    <div><span class="q-no">問10</span>次の計算をしなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">(-4) - (-9)</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> +5（(-4) - (-9) = (-4) + (+9) = +5。符号の変化に注意）</div>
+  </div>
+
+  <div class="q" data-no="11">
+    <div><span class="q-no">問11</span>次の（　）に当てはまる数を答えなさい。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">(-3) - (+6) = （<span class="blank"></span>）</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> -9（(-3) - (+6) = (-3) + (-6) = -9）</div>
+  </div>
+
+  <div class="q" data-no="12">
+    <div><span class="q-no">問12</span>次の計算の答えを選びなさい。<span class="q-type">選択</span></div>
+    <div class="q-body">(-2) + (+8) - (-3)
+      <ul class="choices">
+        <li data-mark="ア.">+3</li>
+        <li data-mark="イ.">+9</li>
+        <li data-mark="ウ.">-9</li>
+        <li data-mark="エ.">+13</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> イ. +9（項を並べた式に直すと -2 + 8 + 3 = 9）</div>
+  </div>
+
+  <div class="q" data-no="13">
+    <div><span class="q-no">問13</span>次の計算をしなさい。途中の式も書きなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">(+5) - (-4) + (-7)</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> +2 ／ 途中式の例：(+5) - (-4) + (-7) = 5 + 4 - 7 = 9 - 7 = 2</div>
+  </div>
+
+  <div class="q" data-no="14">
+    <div><span class="q-no">問14</span>次の式を、項だけを並べた式に直しなさい。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">(+4) - (+7) + (-3) = （<span class="blank"></span>）</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 4 - 7 - 3（計算すると -6）</div>
+  </div>
+
+  <div class="q" data-no="15">
+    <div><span class="q-no">問15</span>次の文が正しければ「○」、誤っていれば「×」を書きなさい。<span class="q-type">正誤</span></div>
+    <div class="q-body">|+8| と |-8| の値は、どちらも 8 である。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ○（絶対値は 0 からの距離なので、符号にかかわらず +8 でも -8 でも 8）</div>
+  </div>
+
+  <div class="q" data-no="16">
+    <div><span class="q-no">問16</span>次の3つの数 -4 、 +2 、 -1 を、小さい順に並べたものを選びなさい。<span class="q-type">選択</span></div>
+    <div class="q-body">
+      <ul class="choices">
+        <li data-mark="ア.">-1, -4, +2</li>
+        <li data-mark="イ.">-4, -1, +2</li>
+        <li data-mark="ウ.">+2, -1, -4</li>
+        <li data-mark="エ.">-4, +2, -1</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> イ. -4, -1, +2（数直線上で左にあるほど小さい。-4 &lt; -1 &lt; +2）</div>
+  </div>
+
+</main>
+
+<footer>midterm_exam_preparation / make-test</footer>
+
+<script>
+  function toggleAnswer(btn) {
+    const ans = btn.nextElementSibling;
+    ans.classList.toggle('show');
+    btn.textContent = ans.classList.contains('show') ? '答えを隠す' : '答えを見る';
+  }
+  function toggleAll(show) {
+    document.querySelectorAll('.answer').forEach(a => a.classList.toggle('show', show));
+    document.querySelectorAll('.toggle-btn').forEach(b => {
+      b.textContent = show ? '答えを隠す' : '答えを見る';
+    });
+  }
+</script>
+</body>
+</html>
