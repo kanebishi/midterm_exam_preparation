@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>理科 小テスト②（2026-05-13）</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --accent: #2563eb;
+    --accent-soft: #dbeafe;
+    --ok: #16a34a;
+    --text: #0f172a;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --bg: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+    font-size: 17px;
+  }
+  header { border-bottom: 2px solid var(--accent); padding-bottom: 12px; margin-bottom: 20px; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .meta { color: var(--muted); font-size: 13px; }
+  .toolbar {
+    position: sticky; top: 0; background: var(--bg);
+    border-bottom: 1px solid var(--line); padding: 10px 0; margin-bottom: 24px;
+    display: flex; gap: 8px; flex-wrap: wrap; z-index: 10;
+  }
+  .toolbar button {
+    border: 1px solid var(--accent); background: #fff; color: var(--accent);
+    border-radius: 6px; padding: 6px 12px; font-size: 14px; cursor: pointer;
+  }
+  .toolbar button:hover { background: var(--accent-soft); }
+  .toolbar button.primary { background: var(--accent); color: #fff; }
+  .q {
+    border: 1px solid var(--line); border-radius: 8px;
+    padding: 14px 18px; margin-bottom: 14px; page-break-inside: avoid;
+  }
+  .q-no { font-weight: bold; color: var(--accent); margin-right: 6px; }
+  .q-type {
+    font-size: 11px; color: #fff; background: var(--muted);
+    padding: 2px 7px; border-radius: 10px; margin-left: 8px; vertical-align: middle;
+  }
+  .q-body { margin-top: 6px; }
+  .choices { list-style: none; padding-left: 0; margin: 6px 0 0; }
+  .choices li { padding: 4px 0 4px 28px; position: relative; }
+  .choices li::before {
+    content: attr(data-mark); position: absolute; left: 0;
+    color: var(--muted); font-weight: bold;
+  }
+  .answer {
+    margin-top: 10px; padding: 8px 12px; background: #f0fdf4;
+    border-left: 3px solid var(--ok); border-radius: 4px; display: none;
+  }
+  .answer.show { display: block; }
+  .answer-label { color: var(--ok); font-weight: bold; font-size: 13px; }
+  .toggle-btn {
+    border: 1px solid var(--line); background: #fff; border-radius: 4px;
+    padding: 3px 10px; font-size: 12px; color: var(--muted); cursor: pointer; margin-top: 8px;
+  }
+  .toggle-btn:hover { color: var(--ok); border-color: var(--ok); }
+  .blank {
+    display: inline-block; min-width: 80px;
+    border-bottom: 1.5px solid var(--text); padding: 0 4px;
+  }
+  footer { margin-top: 40px; color: var(--muted); font-size: 12px; text-align: center; }
+  @media print {
+    .toolbar, .toggle-btn { display: none !important; }
+    body { padding: 0; font-size: 14px; max-width: none; }
+    .q { break-inside: avoid; border-color: #999; }
+    .answer { background: #fff; border-left-color: #333; }
+  }
+  .q-figure { margin: 12px 0 6px; text-align: center; }
+  .q-figure svg {
+    width: 100%; max-width: 480px; height: auto;
+    border: 1px solid var(--line); border-radius: 4px; background: #fafafa;
+  }
+  .fig-marker { fill: #ef4444; stroke: #fff; stroke-width: 2; }
+  .fig-num {
+    fill: #fff; font-weight: bold; font-size: 14px;
+    text-anchor: middle; dominant-baseline: central;
+    font-family: -apple-system, sans-serif; pointer-events: none;
+  }
+  .fig-label {
+    fill: #1e3a8a; font-weight: bold; font-size: 13px;
+    text-anchor: middle; font-family: -apple-system, sans-serif; pointer-events: none;
+  }
+  .fig-highlight { fill: rgba(239,68,68,0.22); stroke: #ef4444; stroke-width: 2; }
+  @media print { .q-figure svg { background: #fff; max-width: 100%; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="flower-cross-section">
+      <line x1="200" y1="320" x2="200" y2="395" stroke="#5a7c3e" stroke-width="4"/>
+      <path d="M 195 295 Q 60 210 100 110 Q 160 70 200 180 L 200 295 Z" fill="#fce4ec" stroke="#c97a8b" stroke-width="1.8"/>
+      <path d="M 205 295 Q 340 210 300 110 Q 240 70 200 180 L 200 295 Z" fill="#fce4ec" stroke="#c97a8b" stroke-width="1.8"/>
+      <path d="M 180 300 Q 145 335 170 296 Z" fill="#aed581" stroke="#4e7a23" stroke-width="1.5"/>
+      <path d="M 220 300 Q 255 335 230 296 Z" fill="#aed581" stroke="#4e7a23" stroke-width="1.5"/>
+      <line x1="170" y1="295" x2="155" y2="165" stroke="#9b8b62" stroke-width="2"/>
+      <ellipse cx="155" cy="150" rx="11" ry="18" fill="#fff59d" stroke="#a07820" stroke-width="1.5"/>
+      <line x1="230" y1="295" x2="245" y2="165" stroke="#9b8b62" stroke-width="2"/>
+      <ellipse cx="245" cy="150" rx="11" ry="18" fill="#fff59d" stroke="#a07820" stroke-width="1.5"/>
+      <ellipse cx="200" cy="255" rx="28" ry="38" fill="#dcedc8" stroke="#558b2f" stroke-width="1.8"/>
+      <circle cx="190" cy="250" r="5" fill="#fff8e1" stroke="#7a5a20" stroke-width="1.2"/>
+      <circle cx="210" cy="245" r="5" fill="#fff8e1" stroke="#7a5a20" stroke-width="1.2"/>
+      <circle cx="200" cy="270" r="5" fill="#fff8e1" stroke="#7a5a20" stroke-width="1.2"/>
+      <line x1="200" y1="218" x2="200" y2="130" stroke="#558b2f" stroke-width="3"/>
+      <path d="M 184 122 Q 200 95 216 122 Q 210 138 200 130 Q 190 138 184 122 Z" fill="#aed581" stroke="#33691e" stroke-width="1.8"/>
+    </g>
+    <g id="pine-flower">
+      <line x1="120" y1="395" x2="120" y2="80" stroke="#6d4c2e" stroke-width="6"/>
+      <line x1="120" y1="240" x2="180" y2="200" stroke="#6d4c2e" stroke-width="4"/>
+      <g stroke="#2e7d32" stroke-width="1.5" fill="none">
+        <line x1="120" y1="150" x2="80" y2="130"/>
+        <line x1="120" y1="150" x2="90" y2="150"/>
+        <line x1="120" y1="150" x2="80" y2="170"/>
+        <line x1="120" y1="290" x2="80" y2="280"/>
+        <line x1="120" y1="290" x2="80" y2="305"/>
+        <line x1="120" y1="290" x2="90" y2="320"/>
+      </g>
+      <ellipse cx="120" cy="65" rx="14" ry="22" fill="#b71c1c" stroke="#4e0d0d" stroke-width="1.8"/>
+      <g stroke="#4e0d0d" stroke-width="0.8" fill="none">
+        <line x1="108" y1="55" x2="132" y2="55"/>
+        <line x1="107" y1="65" x2="133" y2="65"/>
+        <line x1="108" y1="75" x2="132" y2="75"/>
+      </g>
+      <ellipse cx="180" cy="195" rx="9" ry="14" fill="#fdd835" stroke="#7a5a20" stroke-width="1.2"/>
+      <ellipse cx="195" cy="200" rx="9" ry="14" fill="#fdd835" stroke="#7a5a20" stroke-width="1.2"/>
+      <ellipse cx="183" cy="215" rx="9" ry="14" fill="#fdd835" stroke="#7a5a20" stroke-width="1.2"/>
+      <line x1="260" y1="40" x2="260" y2="380" stroke="#bdbdbd" stroke-width="1" stroke-dasharray="5,4"/>
+      <rect x="290" y="60" width="200" height="280" fill="#fafafa" stroke="#bdbdbd" stroke-width="1" rx="6"/>
+      <text x="390" y="80" text-anchor="middle" font-size="13" fill="#555" font-family="-apple-system, sans-serif">りん片の拡大</text>
+      <path d="M 320 200 Q 330 130 420 140 Q 470 170 440 240 Q 360 250 320 200 Z" fill="#ffcdd2" stroke="#7a1d1d" stroke-width="2"/>
+      <path d="M 330 195 Q 345 175 430 175 Q 450 195 420 215 Q 360 220 330 195 Z" fill="#ef9a9a" stroke="#7a1d1d" stroke-width="1.5"/>
+      <circle cx="370" cy="190" r="9" fill="#fff8e1" stroke="#7a5a20" stroke-width="1.5"/>
+      <circle cx="405" cy="190" r="9" fill="#fff8e1" stroke="#7a5a20" stroke-width="1.5"/>
+      <path d="M 320 285 Q 330 270 380 275 Q 400 290 380 305 Q 340 310 320 285 Z" fill="#fff59d" stroke="#7a5a20" stroke-width="1.5"/>
+      <ellipse cx="345" cy="295" rx="7" ry="4" fill="#f9a825" stroke="#7a5a20" stroke-width="1"/>
+      <ellipse cx="370" cy="295" rx="7" ry="4" fill="#f9a825" stroke="#7a5a20" stroke-width="1"/>
+    </g>
+  </defs>
+</svg>
+
+<header>
+  <h1>理科 小テスト②（2026-05-13）</h1>
+  <div class="meta">理科 / 全 13 問 / 生成日: 2026-05-13 / テーマ: 花のつくり・マツ・被子植物と裸子植物</div>
+</header>
+
+<div class="toolbar">
+  <button onclick="toggleAll(true)">全ての答えを表示</button>
+  <button onclick="toggleAll(false)">全て隠す</button>
+  <button class="primary" onclick="window.print()">印刷 / PDF</button>
+</div>
+
+<main id="questions">
+
+  <div class="q" data-no="1">
+    <div><span class="q-no">問1</span>次の文の（　）に当てはまる語を答えなさい。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">めしべの根元のふくらんだ部分を（<span class="blank"></span>）といい、その中に小さな粒のような（<span class="blank"></span>）が入っている。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 子房 / 胚珠</div>
+  </div>
+
+  <div class="q" data-no="2">
+    <div><span class="q-no">問2</span>下の花の断面図の①〜④の部分の名称をそれぞれ答えなさい。<span class="q-type">図</span></div>
+    <div class="q-body">
+      <figure class="q-figure">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet">
+          <use href="#flower-cross-section"/>
+          <circle cx="200" cy="175" r="14" class="fig-marker"/>
+          <text x="200" y="175" class="fig-num">1</text>
+          <circle cx="245" cy="150" r="14" class="fig-marker"/>
+          <text x="245" y="150" class="fig-num">2</text>
+          <circle cx="290" cy="175" r="14" class="fig-marker"/>
+          <text x="290" y="175" class="fig-num">3</text>
+          <circle cx="235" cy="318" r="14" class="fig-marker"/>
+          <text x="235" y="318" class="fig-num">4</text>
+        </svg>
+      </figure>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ①花柱 ②やく ③花弁 ④がく</div>
+  </div>
+
+  <div class="q" data-no="3">
+    <div><span class="q-no">問3</span>おしべの先端にあり、花粉をつくる袋状の部分を何というか。<span class="q-type">一問一答</span></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> やく</div>
+  </div>
+
+  <div class="q" data-no="4">
+    <div><span class="q-no">問4</span>次の文の（　）に当てはまる語を答えなさい。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">めしべの柱頭におしべの花粉がつくことを（<span class="blank"></span>）といい、これが起きるとめしべの中で実や種子をつくる準備が始まる。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 受粉</div>
+  </div>
+
+  <div class="q" data-no="5">
+    <div><span class="q-no">問5</span>次の文の（　）に当てはまる語を答えなさい。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">受粉が起きると、子房は（<span class="blank"></span>）に、胚珠は（<span class="blank"></span>）に変化する。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 果実 / 種子</div>
+  </div>
+
+  <div class="q" data-no="6">
+    <div><span class="q-no">問6</span>下の図はマツの枝の様子と、そのりん片を拡大したものである。①は雌花・雄花のどちらか答え、②に示される丸い部分の名称と、それがむき出しになっていることからマツが分類される植物のなかまの名前を答えなさい。<span class="q-type">図</span></div>
+    <div class="q-body">
+      <figure class="q-figure">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 400" preserveAspectRatio="xMidYMid meet">
+          <use href="#pine-flower"/>
+          <circle cx="120" cy="65" r="14" class="fig-marker"/>
+          <text x="120" y="65" class="fig-num">1</text>
+          <circle cx="370" cy="190" r="14" class="fig-marker"/>
+          <text x="370" y="190" class="fig-num">2</text>
+        </svg>
+      </figure>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ①雌花　②胚珠　胚珠がむき出しなので、マツは「裸子植物」に分類される。</div>
+  </div>
+
+  <div class="q" data-no="7">
+    <div><span class="q-no">問7</span>次の文が正しければ「○」、誤っていれば「×」を書きなさい。<span class="q-type">正誤</span></div>
+    <div class="q-body">マツの花には、被子植物と同じように花弁とがくがある。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ×（マツのような裸子植物の花には花弁やがくはなく、雌花・雄花がりん片の集まりになっている。）</div>
+  </div>
+
+  <div class="q" data-no="8">
+    <div><span class="q-no">問8</span>胚珠がむき出しになっている種子植物のなかまを何というか。<span class="q-type">一問一答</span></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 裸子植物</div>
+  </div>
+
+  <div class="q" data-no="9">
+    <div><span class="q-no">問9</span>胚珠が子房の中に包まれている種子植物のなかまを何というか。<span class="q-type">一問一答</span></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 被子植物</div>
+  </div>
+
+  <div class="q" data-no="10">
+    <div><span class="q-no">問10</span>次の植物のうち、裸子植物にあてはまるものを1つ選びなさい。<span class="q-type">選択</span></div>
+    <div class="q-body">
+      <ul class="choices">
+        <li data-mark="ア.">アサガオ</li>
+        <li data-mark="イ.">アブラナ</li>
+        <li data-mark="ウ.">マツ</li>
+        <li data-mark="エ.">サクラ</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ウ. マツ（他はすべて被子植物）</div>
+  </div>
+
+  <div class="q" data-no="11">
+    <div><span class="q-no">問11</span>次の植物のうち、合弁花類にあてはまるものを1つ選びなさい。<span class="q-type">選択</span></div>
+    <div class="q-body">
+      <ul class="choices">
+        <li data-mark="ア.">サクラ</li>
+        <li data-mark="イ.">アサガオ</li>
+        <li data-mark="ウ.">アブラナ</li>
+        <li data-mark="エ.">エンドウ</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> イ. アサガオ（花弁が根元でつながっているのが合弁花類。他は花弁が1枚ずつ分かれている離弁花類）</div>
+  </div>
+
+  <div class="q" data-no="12">
+    <div><span class="q-no">問12</span>次の文が正しければ「○」、誤っていれば「×」を書きなさい。<span class="q-type">正誤</span></div>
+    <div class="q-body">アサガオやタンポポのように、花弁が根元でつながっている植物のなかまを合弁花類という。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ○</div>
+  </div>
+
+  <div class="q" data-no="13">
+    <div><span class="q-no">問13</span>被子植物のうち、サクラやアブラナのように花弁が1枚ずつ離れているなかまを何というか。<span class="q-type">一問一答</span></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 離弁花類</div>
+  </div>
+
+</main>
+
+<footer>midterm_exam_preparation / make-test</footer>
+
+<script>
+  function toggleAnswer(btn) {
+    const ans = btn.nextElementSibling;
+    ans.classList.toggle('show');
+    btn.textContent = ans.classList.contains('show') ? '答えを隠す' : '答えを見る';
+  }
+  function toggleAll(show) {
+    document.querySelectorAll('.answer').forEach(a => a.classList.toggle('show', show));
+    document.querySelectorAll('.toggle-btn').forEach(b => {
+      b.textContent = show ? '答えを隠す' : '答えを見る';
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>理科 小テスト④（2026-05-13）</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --accent: #2563eb;
+    --accent-soft: #dbeafe;
+    --ok: #16a34a;
+    --text: #0f172a;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --bg: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+    font-size: 17px;
+  }
+  header { border-bottom: 2px solid var(--accent); padding-bottom: 12px; margin-bottom: 20px; }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .meta { color: var(--muted); font-size: 13px; }
+  .toolbar {
+    position: sticky; top: 0; background: var(--bg);
+    border-bottom: 1px solid var(--line); padding: 10px 0; margin-bottom: 24px;
+    display: flex; gap: 8px; flex-wrap: wrap; z-index: 10;
+  }
+  .toolbar button {
+    border: 1px solid var(--accent); background: #fff; color: var(--accent);
+    border-radius: 6px; padding: 6px 12px; font-size: 14px; cursor: pointer;
+  }
+  .toolbar button:hover { background: var(--accent-soft); }
+  .toolbar button.primary { background: var(--accent); color: #fff; }
+  .q {
+    border: 1px solid var(--line); border-radius: 8px;
+    padding: 14px 18px; margin-bottom: 14px; page-break-inside: avoid;
+  }
+  .q-no { font-weight: bold; color: var(--accent); margin-right: 6px; }
+  .q-type {
+    font-size: 11px; color: #fff; background: var(--muted);
+    padding: 2px 7px; border-radius: 10px; margin-left: 8px; vertical-align: middle;
+  }
+  .q-body { margin-top: 6px; }
+  .choices { list-style: none; padding-left: 0; margin: 6px 0 0; }
+  .choices li { padding: 4px 0 4px 28px; position: relative; }
+  .choices li::before {
+    content: attr(data-mark); position: absolute; left: 0;
+    color: var(--muted); font-weight: bold;
+  }
+  .answer {
+    margin-top: 10px; padding: 8px 12px; background: #f0fdf4;
+    border-left: 3px solid var(--ok); border-radius: 4px; display: none;
+  }
+  .answer.show { display: block; }
+  .answer-label { color: var(--ok); font-weight: bold; font-size: 13px; }
+  .toggle-btn {
+    border: 1px solid var(--line); background: #fff; border-radius: 4px;
+    padding: 3px 10px; font-size: 12px; color: var(--muted); cursor: pointer; margin-top: 8px;
+  }
+  .toggle-btn:hover { color: var(--ok); border-color: var(--ok); }
+  .blank {
+    display: inline-block; min-width: 80px;
+    border-bottom: 1.5px solid var(--text); padding: 0 4px;
+  }
+  footer { margin-top: 40px; color: var(--muted); font-size: 12px; text-align: center; }
+  @media print {
+    .toolbar, .toggle-btn { display: none !important; }
+    body { padding: 0; font-size: 14px; max-width: none; }
+    .q { break-inside: avoid; border-color: #999; }
+    .answer { background: #fff; border-left-color: #333; }
+  }
+  .q-figure { margin: 12px 0 6px; text-align: center; }
+  .q-figure svg {
+    width: 100%; max-width: 480px; height: auto;
+    border: 1px solid var(--line); border-radius: 4px; background: #fafafa;
+  }
+  .fig-marker { fill: #ef4444; stroke: #fff; stroke-width: 2; }
+  .fig-num {
+    fill: #fff; font-weight: bold; font-size: 14px;
+    text-anchor: middle; dominant-baseline: central;
+    font-family: -apple-system, sans-serif; pointer-events: none;
+  }
+  .fig-label {
+    fill: #1e3a8a; font-weight: bold; font-size: 13px;
+    text-anchor: middle; font-family: -apple-system, sans-serif; pointer-events: none;
+  }
+  .fig-highlight { fill: rgba(239,68,68,0.22); stroke: #ef4444; stroke-width: 2; }
+  @media print { .q-figure svg { background: #fff; max-width: 100%; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" aria-hidden="true" style="position:absolute" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="fern">
+      <line x1="20" y1="280" x2="380" y2="280" stroke="#8d6e63" stroke-width="2" stroke-dasharray="6,3"/>
+      <path d="M 80 310 Q 160 295 240 320" stroke="#6d4c2e" stroke-width="6" fill="none"/>
+      <g stroke="#a1887f" stroke-width="1.5" fill="none">
+        <path d="M 100 318 Q 95 350 90 385"/>
+        <path d="M 140 313 Q 145 350 155 385"/>
+        <path d="M 180 308 Q 175 350 170 385"/>
+        <path d="M 220 313 Q 230 350 235 385"/>
+      </g>
+      <line x1="160" y1="298" x2="160" y2="80" stroke="#558b2f" stroke-width="4"/>
+      <line x1="160" y1="80" x2="160" y2="240" stroke="#33691e" stroke-width="2"/>
+      <g fill="#c5e1a5" stroke="#33691e" stroke-width="1.3">
+        <path d="M 160 85 Q 130 78 115 88 Q 130 95 160 92 Z"/>
+        <path d="M 160 85 Q 190 78 205 88 Q 190 95 160 92 Z"/>
+        <path d="M 160 110 Q 120 100 100 115 Q 125 122 160 117 Z"/>
+        <path d="M 160 110 Q 200 100 220 115 Q 195 122 160 117 Z"/>
+        <path d="M 160 140 Q 110 128 85 145 Q 120 155 160 148 Z"/>
+        <path d="M 160 140 Q 210 128 235 145 Q 200 155 160 148 Z"/>
+        <path d="M 160 170 Q 105 158 75 180 Q 115 192 160 180 Z"/>
+        <path d="M 160 170 Q 215 158 245 180 Q 205 192 160 180 Z"/>
+        <path d="M 160 200 Q 110 190 90 210 Q 120 220 160 210 Z"/>
+        <path d="M 160 200 Q 210 190 230 210 Q 200 220 160 210 Z"/>
+        <path d="M 160 225 Q 125 218 110 230 Q 130 240 160 232 Z"/>
+        <path d="M 160 225 Q 195 218 210 230 Q 190 240 160 232 Z"/>
+      </g>
+      <g fill="#5d4037" stroke="none">
+        <circle cx="195" cy="183" r="2"/>
+        <circle cx="205" cy="185" r="2"/>
+        <circle cx="215" cy="183" r="2"/>
+        <circle cx="200" cy="178" r="2"/>
+        <circle cx="210" cy="178" r="2"/>
+        <circle cx="220" cy="180" r="2"/>
+        <circle cx="200" cy="188" r="2"/>
+        <circle cx="210" cy="188" r="2"/>
+        <circle cx="220" cy="186" r="2"/>
+      </g>
+      <rect x="290" y="100" width="100" height="120" fill="#fafafa" stroke="#bdbdbd" stroke-width="1" rx="4"/>
+      <text x="340" y="118" text-anchor="middle" font-size="11" fill="#555" font-family="-apple-system, sans-serif">胞子のうの拡大</text>
+      <path d="M 305 140 Q 340 130 375 145 Q 340 165 305 155 Z" fill="#c5e1a5" stroke="#33691e" stroke-width="1.3"/>
+      <g fill="#5d4037" stroke="#3e2723" stroke-width="0.6">
+        <circle cx="320" cy="143" r="4"/>
+        <circle cx="332" cy="140" r="4"/>
+        <circle cx="345" cy="142" r="4"/>
+        <circle cx="357" cy="146" r="4"/>
+        <circle cx="325" cy="153" r="4"/>
+        <circle cx="340" cy="155" r="4"/>
+        <circle cx="353" cy="153" r="4"/>
+      </g>
+      <g fill="#8d6e63" stroke="none">
+        <circle cx="320" cy="195" r="2"/>
+        <circle cx="328" cy="200" r="2"/>
+        <circle cx="335" cy="195" r="2"/>
+        <circle cx="343" cy="200" r="2"/>
+        <circle cx="350" cy="195" r="2"/>
+      </g>
+      <text x="340" y="215" text-anchor="middle" font-size="10" fill="#555" font-family="-apple-system, sans-serif">胞子</text>
+    </g>
+    <g id="moss">
+      <line x1="20" y1="270" x2="480" y2="270" stroke="#8d6e63" stroke-width="2" stroke-dasharray="6,3"/>
+      <g stroke="#a1887f" stroke-width="1.2" fill="none">
+        <path d="M 130 280 Q 120 305 110 330"/>
+        <path d="M 135 280 Q 132 305 128 330"/>
+        <path d="M 140 280 Q 145 305 150 330"/>
+        <path d="M 145 280 Q 155 305 165 330"/>
+      </g>
+      <g fill="#aed581" stroke="#33691e" stroke-width="1.2">
+        <ellipse cx="115" cy="265" rx="14" ry="6"/>
+        <ellipse cx="135" cy="262" rx="16" ry="6"/>
+        <ellipse cx="155" cy="265" rx="14" ry="6"/>
+        <ellipse cx="125" cy="255" rx="12" ry="5"/>
+        <ellipse cx="145" cy="255" rx="12" ry="5"/>
+      </g>
+      <line x1="135" y1="253" x2="135" y2="120" stroke="#9b8b62" stroke-width="2"/>
+      <ellipse cx="135" cy="105" rx="14" ry="20" fill="#bcaaa4" stroke="#5d4037" stroke-width="1.5"/>
+      <path d="M 122 88 Q 135 78 148 88 L 145 95 Q 135 92 125 95 Z" fill="#8d6e63" stroke="#5d4037" stroke-width="1.3"/>
+      <text x="135" y="320" text-anchor="middle" font-size="15" fill="#33691e" font-weight="bold" font-family="-apple-system, sans-serif">A</text>
+      <line x1="260" y1="40" x2="260" y2="340" stroke="#bdbdbd" stroke-width="1" stroke-dasharray="5,4"/>
+      <g stroke="#a1887f" stroke-width="1.2" fill="none">
+        <path d="M 360 280 Q 350 305 340 330"/>
+        <path d="M 365 280 Q 362 305 358 330"/>
+        <path d="M 370 280 Q 375 305 380 330"/>
+        <path d="M 375 280 Q 385 305 395 330"/>
+      </g>
+      <g fill="#aed581" stroke="#33691e" stroke-width="1.2">
+        <ellipse cx="345" cy="265" rx="14" ry="6"/>
+        <ellipse cx="365" cy="262" rx="16" ry="6"/>
+        <ellipse cx="385" cy="265" rx="14" ry="6"/>
+        <ellipse cx="355" cy="255" rx="12" ry="5"/>
+        <ellipse cx="375" cy="255" rx="12" ry="5"/>
+      </g>
+      <line x1="365" y1="253" x2="365" y2="200" stroke="#558b2f" stroke-width="2"/>
+      <path d="M 340 200 Q 365 175 390 200 Q 365 215 340 200 Z" fill="#f9a825" stroke="#7a5a20" stroke-width="1.5"/>
+      <g fill="#7a5a20">
+        <circle cx="355" cy="195" r="1.5"/>
+        <circle cx="365" cy="192" r="1.5"/>
+        <circle cx="375" cy="195" r="1.5"/>
+        <circle cx="360" cy="200" r="1.5"/>
+        <circle cx="370" cy="200" r="1.5"/>
+      </g>
+      <text x="365" y="320" text-anchor="middle" font-size="15" fill="#7a5a20" font-weight="bold" font-family="-apple-system, sans-serif">B</text>
+    </g>
+  </defs>
+</svg>
+
+<header>
+  <h1>理科 小テスト④（2026-05-13）</h1>
+  <div class="meta">理科 / 全 13 問 / 生成日: 2026-05-13 / テーマ: 種子をつくらない植物（シダ・コケ）と総合分類</div>
+</header>
+
+<div class="toolbar">
+  <button onclick="toggleAll(true)">全ての答えを表示</button>
+  <button onclick="toggleAll(false)">全て隠す</button>
+  <button class="primary" onclick="window.print()">印刷 / PDF</button>
+</div>
+
+<main id="questions">
+
+  <div class="q" data-no="1">
+    <div><span class="q-no">問1</span>下の図はシダ植物のからだのつくりである。①の葉の裏側にある小さな粒の集まりの名称と、その中で作られて新しい個体になるものの名前を答えなさい。<span class="q-type">図</span></div>
+    <div class="q-body">
+      <figure class="q-figure">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet">
+          <use href="#fern"/>
+          <rect x="190" y="170" width="40" height="28" rx="5" class="fig-highlight"/>
+          <text x="180" y="165" font-size="15" fill="#ef4444" font-weight="bold" text-anchor="middle" font-family="-apple-system, sans-serif">①</text>
+        </svg>
+      </figure>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ①の集まり = 胞子のう。中で作られるのは「胞子」。</div>
+  </div>
+
+  <div class="q" data-no="2">
+    <div><span class="q-no">問2</span>シダ植物は種子を作らない。そのかわり、何によってなかまをふやすか。<span class="q-type">一問一答</span></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 胞子</div>
+  </div>
+
+  <div class="q" data-no="3">
+    <div><span class="q-no">問3</span>下の図はコケ植物のからだのつくりである。A・B のうち、雌株はどちらか答えなさい。また①で示される袋の名称と、その中で作られるものを答えなさい。<span class="q-type">図</span></div>
+    <div class="q-body">
+      <figure class="q-figure">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 350" preserveAspectRatio="xMidYMid meet">
+          <use href="#moss"/>
+          <circle cx="135" cy="105" r="14" class="fig-marker"/>
+          <text x="135" y="105" class="fig-num">1</text>
+        </svg>
+      </figure>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 雌株は A。①は「さく（胞子のう）」で、中で作られるのは「胞子」。</div>
+  </div>
+
+  <div class="q" data-no="4">
+    <div><span class="q-no">問4</span>コケ植物の根のように見える、からだを地面や岩に固定するはたらきをもつ部分を何というか。<span class="q-type">一問一答</span></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 仮根</div>
+  </div>
+
+  <div class="q" data-no="5">
+    <div><span class="q-no">問5</span>次の文が正しければ「○」、誤っていれば「×」を書きなさい。<span class="q-type">正誤</span></div>
+    <div class="q-body">コケ植物には雌株と雄株があり、胞子は雌株のさくの中で作られる。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ○</div>
+  </div>
+
+  <div class="q" data-no="6">
+    <div><span class="q-no">問6</span>次の文が正しければ「○」、誤っていれば「×」を書きなさい。<span class="q-type">正誤</span></div>
+    <div class="q-body">シダ植物もコケ植物も花を咲かせ、種子をつくってなかまをふやす。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ×（シダ植物・コケ植物はどちらも花を咲かせず種子もつくらない。胞子でふえる。）</div>
+  </div>
+
+  <div class="q" data-no="7">
+    <div><span class="q-no">問7</span>次のうち、種子をつくらない植物を1つ選びなさい。<span class="q-type">選択</span></div>
+    <div class="q-body">
+      <ul class="choices">
+        <li data-mark="ア.">マツ</li>
+        <li data-mark="イ.">アサガオ</li>
+        <li data-mark="ウ.">イヌワラビ</li>
+        <li data-mark="エ.">イネ</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ウ. イヌワラビ（シダ植物。胞子でふえる）</div>
+  </div>
+
+  <div class="q" data-no="8">
+    <div><span class="q-no">問8</span>次のうち、コケ植物にあてはまるものを1つ選びなさい。<span class="q-type">選択</span></div>
+    <div class="q-body">
+      <ul class="choices">
+        <li data-mark="ア.">イチョウ</li>
+        <li data-mark="イ.">ゼニゴケ</li>
+        <li data-mark="ウ.">スギナ</li>
+        <li data-mark="エ.">タンポポ</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> イ. ゼニゴケ（スギナはシダ植物、イチョウは裸子植物、タンポポは被子植物）</div>
+  </div>
+
+  <div class="q" data-no="9">
+    <div><span class="q-no">問9</span>次の文の（　）に当てはまる語を答えなさい。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">植物は、種子をつくる（<span class="blank"></span>）植物と、種子をつくらない植物に大きく分けられる。種子をつくらない植物には（<span class="blank"></span>）植物と（<span class="blank"></span>）植物がある。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 種子 / シダ / コケ</div>
+  </div>
+
+  <div class="q" data-no="10">
+    <div><span class="q-no">問10</span>次の文の（　）に当てはまる語を答えなさい。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">種子植物は、胚珠が子房に包まれている（<span class="blank"></span>）植物と、胚珠がむき出しになっている（<span class="blank"></span>）植物に分けられる。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 被子 / 裸子</div>
+  </div>
+
+  <div class="q" data-no="11">
+    <div><span class="q-no">問11</span>シダ植物にあてはまる植物の例を1つ答えなさい。<span class="q-type">一問一答</span></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> イヌワラビ、スギナ、ゼンマイ などから1つ</div>
+  </div>
+
+  <div class="q" data-no="12">
+    <div><span class="q-no">問12</span>シダ植物とコケ植物に共通する特徴を1つ答えなさい。<span class="q-type">一問一答</span></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> 種子をつくらず胞子でなかまをふやす。（他に「花を咲かせない」「日の当たりにくい湿った場所に育つことが多い」なども可）</div>
+  </div>
+
+  <div class="q" data-no="13">
+    <div><span class="q-no">問13</span>次の文が正しければ「○」、誤っていれば「×」を書きなさい。<span class="q-type">正誤</span></div>
+    <div class="q-body">マツは被子植物の単子葉類に分類される。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ×（マツは種子植物のうちの裸子植物。被子植物の単子葉類・双子葉類のどちらでもない。）</div>
+  </div>
+
+</main>
+
+<footer>midterm_exam_preparation / make-test</footer>
+
+<script>
+  function toggleAnswer(btn) {
+    const ans = btn.nextElementSibling;
+    ans.classList.toggle('show');
+    btn.textContent = ans.classList.contains('show') ? '答えを隠す' : '答えを見る';
+  }
+  function toggleAll(show) {
+    document.querySelectorAll('.answer').forEach(a => a.classList.toggle('show', show));
+    document.querySelectorAll('.toggle-btn').forEach(b => {
+      b.textContent = show ? '答えを隠す' : '答えを見る';
+    });
+  }
+</script>
+</body>
+</html>
