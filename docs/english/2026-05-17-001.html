@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>英語 小テスト（2026-05-17）No.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --accent: #2563eb;
+    --accent-soft: #dbeafe;
+    --ok: #16a34a;
+    --text: #0f172a;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --bg: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 20px 80px;
+    font-size: 17px;
+  }
+  header {
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+  }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .meta { color: var(--muted); font-size: 13px; }
+  .toolbar {
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding: 10px 0;
+    margin-bottom: 24px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    z-index: 10;
+  }
+  .toolbar button {
+    border: 1px solid var(--accent);
+    background: #fff;
+    color: var(--accent);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .toolbar button:hover { background: var(--accent-soft); }
+  .toolbar button.primary { background: var(--accent); color: #fff; }
+  .q {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    page-break-inside: avoid;
+  }
+  .q-no {
+    font-weight: bold;
+    color: var(--accent);
+    margin-right: 6px;
+  }
+  .q-type {
+    font-size: 11px;
+    color: #fff;
+    background: var(--muted);
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .q-body { margin-top: 6px; }
+  .choices { list-style: none; padding-left: 0; margin: 6px 0 0; }
+  .choices li {
+    padding: 4px 0 4px 28px;
+    position: relative;
+  }
+  .choices li::before {
+    content: attr(data-mark);
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-weight: bold;
+  }
+  .answer {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: #f0fdf4;
+    border-left: 3px solid var(--ok);
+    border-radius: 4px;
+    display: none;
+  }
+  .answer.show { display: block; }
+  .answer-label { color: var(--ok); font-weight: bold; font-size: 13px; }
+  .toggle-btn {
+    border: 1px solid var(--line);
+    background: #fff;
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 12px;
+    color: var(--muted);
+    cursor: pointer;
+    margin-top: 8px;
+  }
+  .toggle-btn:hover { color: var(--ok); border-color: var(--ok); }
+  .blank {
+    display: inline-block;
+    min-width: 80px;
+    border-bottom: 1.5px solid var(--text);
+    padding: 0 4px;
+  }
+  footer {
+    margin-top: 40px;
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+  }
+  @media print {
+    .toolbar, .toggle-btn { display: none !important; }
+    body { padding: 0; font-size: 14px; max-width: none; }
+    .q { break-inside: avoid; border-color: #999; }
+    .answer { background: #fff; border-left-color: #333; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>英語 小テスト（2026-05-17）No.1</h1>
+  <div class="meta">英語 / 全 15 問 / 生成日: 2026-05-17</div>
+</header>
+
+<div class="toolbar">
+  <button onclick="toggleAll(true)">全ての答えを表示</button>
+  <button onclick="toggleAll(false)">全て隠す</button>
+  <button class="primary" onclick="window.print()">印刷 / PDF</button>
+</div>
+
+<main id="questions">
+
+  <div class="q" data-no="1">
+    <div><span class="q-no">問1</span>大文字「G」に対応する小文字を書きなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">G → <span class="blank"></span></div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> g</div>
+  </div>
+
+  <div class="q" data-no="2">
+    <div><span class="q-no">問2</span>形が似ていて混同しやすい小文字の組として正しいものを選びなさい。<span class="q-type">選択</span></div>
+    <div class="q-body">
+      <ul class="choices">
+        <li data-mark="ア.">a / e</li>
+        <li data-mark="イ.">b / d</li>
+        <li data-mark="ウ.">c / o</li>
+        <li data-mark="エ.">r / s</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> イ. b / d（左右が反転した形で混同しやすい。p / q も同じ）</div>
+  </div>
+
+  <div class="q" data-no="3">
+    <div><span class="q-no">問3</span>次の日本語をヘボン式ローマ字で書きなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">すし</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> sushi（「し」は shi）</div>
+  </div>
+
+  <div class="q" data-no="4">
+    <div><span class="q-no">問4</span>次の日本語をヘボン式ローマ字で書きなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">抹茶（まっちゃ）</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> matcha（つまる音「っ」+ ch のときは tch になる）</div>
+  </div>
+
+  <div class="q" data-no="5">
+    <div><span class="q-no">問5</span>次の地名をヘボン式ローマ字で書きなさい。地名なので最初の文字は大文字にすること。<span class="q-type">一問一答</span></div>
+    <div class="q-body">難波（なんば）</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> Namba（はねる音「ン」は b / p / m の前では m を使う）</div>
+  </div>
+
+  <div class="q" data-no="6">
+    <div><span class="q-no">問6</span>「ち」をヘボン式で書いた場合、正しい綴りはどれか選びなさい。<span class="q-type">選択</span></div>
+    <div class="q-body">
+      <ul class="choices">
+        <li data-mark="ア.">ti</li>
+        <li data-mark="イ.">chi</li>
+        <li data-mark="ウ.">tchi</li>
+        <li data-mark="エ.">tsu</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> イ. chi（ti は訓令式。エの tsu は「つ」）</div>
+  </div>
+
+  <div class="q" data-no="7">
+    <div><span class="q-no">問7</span>次の日本語を英語（綴り）で書きなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">ねこ</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> cat</div>
+  </div>
+
+  <div class="q" data-no="8">
+    <div><span class="q-no">問8</span>次の日本語を英語（綴り）で書きなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">動物園</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> zoo（o を 2 つ）</div>
+  </div>
+
+  <div class="q" data-no="9">
+    <div><span class="q-no">問9</span>次の英文の書き方は正しいか。正しければ ○、誤っていれば × を書きなさい。<span class="q-type">正誤</span></div>
+    <div class="q-body">「i am from osaka」</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ×（文頭は大文字、I は常に大文字、地名 Osaka も大文字、文末にピリオドが必要。正しくは I am from Osaka.）</div>
+  </div>
+
+  <div class="q" data-no="10">
+    <div><span class="q-no">問10</span>次の英文の（　）に入る最も適切な語を選びなさい。<span class="q-type">選択</span></div>
+    <div class="q-body">I （　） Ken.
+      <ul class="choices">
+        <li data-mark="ア.">am</li>
+        <li data-mark="イ.">are</li>
+        <li data-mark="ウ.">is</li>
+        <li data-mark="エ.">be</li>
+      </ul>
+    </div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ア. am（主語が I のときの be動詞は am）</div>
+  </div>
+
+  <div class="q" data-no="11">
+    <div><span class="q-no">問11</span>次の文の（　）に当てはまる語を1語で答えなさい。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">あなたは生徒です。 → You （<span class="blank"></span>） a student.</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> are（主語が You のときの be動詞は are。a を忘れない）</div>
+  </div>
+
+  <div class="q" data-no="12">
+    <div><span class="q-no">問12</span>次の英文を、短縮形を1つ使って書き換えなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">You are not Megumi.</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> You're not Megumi. または You aren't Megumi.（どちらでも可）</div>
+  </div>
+
+  <div class="q" data-no="13">
+    <div><span class="q-no">問13</span>次の文の（　）に当てはまる語を1語で答えなさい。<span class="q-type">穴埋め</span></div>
+    <div class="q-body">私はケンではありません。 → I am （<span class="blank"></span>） Ken.</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> not（be動詞の否定文は be動詞のうしろに not を置く）</div>
+  </div>
+
+  <div class="q" data-no="14">
+    <div><span class="q-no">問14</span>次の英文は正しい英語か。正しければ ○、誤っていれば × を書きなさい。<span class="q-type">正誤</span></div>
+    <div class="q-body">I amn't from China.</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> ×（am not に短縮形はない。正しくは I'm not from China. と主語側を短縮する）</div>
+  </div>
+
+  <div class="q" data-no="15">
+    <div><span class="q-no">問15</span>次の日本語を英語にしなさい。<span class="q-type">一問一答</span></div>
+    <div class="q-body">あなたは豊橋出身です。</div>
+    <button class="toggle-btn" onclick="toggleAnswer(this)">答えを見る</button>
+    <div class="answer"><span class="answer-label">答え:</span> You are from Toyohashi.（短縮形を使って You're from Toyohashi. でも可。文頭・地名は大文字、文末ピリオド）</div>
+  </div>
+
+</main>
+
+<footer>midterm_exam_preparation / make-test</footer>
+
+<script>
+  function toggleAnswer(btn) {
+    const ans = btn.nextElementSibling;
+    ans.classList.toggle('show');
+    btn.textContent = ans.classList.contains('show') ? '答えを隠す' : '答えを見る';
+  }
+  function toggleAll(show) {
+    document.querySelectorAll('.answer').forEach(a => a.classList.toggle('show', show));
+    document.querySelectorAll('.toggle-btn').forEach(b => {
+      b.textContent = show ? '答えを隠す' : '答えを見る';
+    });
+  }
+</script>
+</body>
+</html>
