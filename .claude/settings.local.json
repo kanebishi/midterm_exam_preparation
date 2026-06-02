@@ -10,7 +10,12 @@
       "Bash(xmllint --noout /Users/kanebishi/Repositories/midterm_exam_preparation/works/midterm-test-generator/maps/world-base.svg)",
       "Bash(xmllint --html --noout docs/social-studies/2026-05-12-001.html)",
       "Bash(open *)",
-      "Skill(make-test)"
+      "Skill(make-test)",
+      "WebFetch(domain:www.amazon.co.jp)",
+      "WebFetch(domain:www.hanmoto.com)",
+      "WebFetch(domain:portal.bunri.jp)",
+      "WebFetch(domain:www.maruzenjunkudo.co.jp)",
+      "WebFetch(domain:www.gakusan.com)"
     ]
   }
 }

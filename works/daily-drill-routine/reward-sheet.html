@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>毎日1枚ドリル 実施記録票</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --line: #444;
+    --soft: #888;
+    --accent: #0a4d8c;
+    --fill: #f2f5f9;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    color: var(--ink);
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+    background: #ffffff;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 5.5mm 9mm 4mm;
+  }
+  h1 {
+    font-size: 14pt;
+    text-align: center;
+    margin: 0 0 1mm;
+    letter-spacing: 0.04em;
+  }
+  .setdate {
+    text-align: center;
+    font-size: 9pt;
+    color: var(--soft);
+    margin-bottom: 4mm;
+  }
+
+  /* ルール早見ブロック */
+  .rules {
+    border: 1.5pt solid var(--line);
+    border-radius: 4px;
+    padding: 1.5mm 3mm;
+    margin-bottom: 2.5mm;
+    font-size: 8.5pt;
+    line-height: 1.3;
+  }
+  .rules .flow {
+    text-align: center;
+    font-weight: bold;
+    font-size: 10pt;
+    padding-bottom: 1.5mm;
+    margin-bottom: 1.5mm;
+    border-bottom: 1pt dashed var(--soft);
+  }
+  .axes {
+    display: flex;
+    gap: 3mm;
+  }
+  .axis {
+    flex: 1;
+    background: var(--fill);
+    border-radius: 4px;
+    padding: 2mm 2.5mm;
+  }
+  .axis .label {
+    font-weight: bold;
+    color: var(--accent);
+    font-size: 10pt;
+    display: block;
+    margin-bottom: 1mm;
+  }
+  .axis ul {
+    margin: 0;
+    padding-left: 4.5mm;
+  }
+  .axis li { margin-bottom: 0.3mm; }
+  .hl { background: #fff2a8; padding: 0 2px; font-weight: bold; }
+
+  /* 週ブロック */
+  .weeks { display: flex; flex-direction: column; gap: 1.2mm; }
+  .week {
+    border: 1.2pt solid var(--line);
+    border-radius: 4px;
+    padding: 1mm 2.5mm 1mm;
+    page-break-inside: avoid;
+  }
+  .week-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 9.5pt;
+    font-weight: bold;
+    margin-bottom: 0.8mm;
+  }
+  .week-head .num { color: var(--accent); }
+  .week-head .range { font-weight: normal; color: var(--soft); }
+  .grid {
+    display: flex;
+    gap: 3mm;
+    align-items: stretch;
+  }
+  table.log {
+    border-collapse: collapse;
+    width: 62%;
+    font-size: 8.5pt;
+  }
+  table.log th, table.log td {
+    border: 0.8pt solid var(--line);
+    text-align: center;
+    padding: 1.3mm 1mm;
+  }
+  table.log th {
+    background: var(--fill);
+    font-weight: bold;
+  }
+  table.log td.day { width: 12%; background: var(--fill); font-weight: bold; }
+  table.log td.subj { width: 33%; }
+  table.log td.score { width: 22%; }
+  table.log td.pt { width: 21%; }
+
+  .tally {
+    width: 38%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 8.7pt;
+  }
+  .tally .box {
+    border: 0.8pt solid var(--line);
+    border-radius: 3px;
+    padding: 0.7mm 2mm;
+    margin-bottom: 0.8mm;
+  }
+  .tally .box:last-child { margin-bottom: 0; }
+  .tally .t {
+    font-weight: bold;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.4mm;
+    font-size: 8.7pt;
+  }
+  .chk { font-size: 11pt; letter-spacing: 0.5mm; }
+  .blank {
+    display: inline-block;
+    border-bottom: 0.8pt solid var(--ink);
+    min-width: 9mm;
+    text-align: center;
+  }
+  .note {
+    font-size: 7.6pt;
+    color: var(--soft);
+    margin-top: 0.6mm;
+  }
+  .calc { line-height: 1.3; }
+
+  .footer {
+    text-align: center;
+    font-size: 7.5pt;
+    color: var(--soft);
+    margin-top: 2mm;
+  }
+
+  @media print {
+    .page { margin: 0; padding: 5.5mm 9mm 4mm; }
+    @page { size: A4 portrait; margin: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>毎日1枚ドリル　実施記録票</h1>
+
+  <!-- ルール早見 -->
+  <div class="rules">
+    <div class="flow">毎日の流れ：1教科を選んで解く（別ノート）→ 提出トレイへ</div>
+    <div class="axes">
+      <div class="axis">
+        <span class="label">軸① ゲーム権利時間（つづける）</span>
+        <ul>
+          <li>1教科やり切る ＝ <span class="hl">60分</span></li>
+          <li>4教科ぜんぶ実施で <span class="hl">+60分ボーナス</span>（満額5時間）</li>
+          <li>使えるのは <b>Switch のみ</b></li>
+          <li><b>翌週だけ</b>有効・<b>持ち越し不可</b>（使わないと消える）</li>
+        </ul>
+      </div>
+      <div class="axis">
+        <span class="label">軸② ポイント（点を取る）</span>
+        <ul>
+          <li>採点で <span class="hl">100点満点 ＝ 1pt</span></li>
+          <li><span class="hl">1pt ＝ 30分</span>と交換</li>
+          <li>Switch・スマホ <b>どちらでも自由</b></li>
+          <li><b>貯められる</b>・いつでも交換OK</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 週ブロック ×4 -->
+  <div class="weeks">
+    <!-- 1週分のテンプレート。同じ構造を4週ぶん繰り返す -->
+    <div class="week">
+      <div class="week-head"><span class="num">第　　週</span><span class="range">（　　/　　 〜 　　/　　）</span></div>
+      <div class="grid">
+        <table class="log">
+          <thead>
+            <tr><th>曜</th><th>教科</th><th>点数</th><th>100点(pt)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="day">月</td><td class="subj"></td><td class="score"></td><td class="pt"></td></tr>
+            <tr><td class="day">火</td><td class="subj"></td><td class="score"></td><td class="pt"></td></tr>
+            <tr><td class="day">水</td><td class="subj"></td><td class="score"></td><td class="pt"></td></tr>
+            <tr><td class="day">木</td><td class="subj"></td><td class="score"></td><td class="pt"></td></tr>
+            <tr><td class="day">金</td><td class="subj"></td><td class="score"></td><td class="pt"></td></tr>
+          </tbody>
+        </table>
+        <div class="tally">
+          <div class="box">
+            <span class="t">4教科コンプリート</span>
+            <span class="chk">英 □　数 □　理 □　社 □</span>
+            <div class="note">全部 ✓ で +1時間ボーナス</div>
+          </div>
+          <div class="box calc">
+            <span class="t">翌週のSwitch権利</span>
+            実施 <span class="blank"></span>日 ＋ ボーナス <span class="blank"></span>h<br>
+            ＝ 合計 <span class="blank"></span> 時間
+          </div>
+          <div class="box calc">
+            <span class="t">ポイント通帳</span>
+            今週獲得 <span class="blank"></span>pt<br>
+            残高 <span class="blank"></span>pt
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="week">
+      <div class="week-head"><span class="num">第　　週</span><span class="range">（　　/　　 〜 　　/　　）</span></div>
+      <div class="grid">
+        <table class="log">
+          <thead>
+            <tr><th>曜</th><th>教科</th><th>点数</th><th>100点(pt)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="day">月</td><td class="subj"></td><td class="score"></td><td class="pt"></td></tr>
+            <tr><td class="day">火</td><td class="subj"></td><td class="score"></td><td class="pt"></td></tr>
+            <tr><td class="day">水</td><td class="subj"></td><td class="score"></td><td class="pt"></td></tr>
+            <tr><td class="day">木</td><td class="subj"></td><td class="score"></td><td class="pt"></td></tr>
+            <tr><td class="day">金</td><td class="subj"></td><td class="score"></td><td class="pt"></td></tr>
+          </tbody>
+        </table>
+        <div class="tally">
+          <div class="box">
+            <span class="t">4教科コンプリート</span>
+            <span class="chk">英 □　数 □　理 □　社 □</span>
+            <div class="note">全部 ✓ で +1時間ボーナス</div>
+          </div>
+          <div class="box calc">
+            <span class="t">翌週のSwitch権利</span>
+            実施 <span class="blank"></span>日 ＋ ボーナス <span class="blank"></span>h<br>
+            ＝ 合計 <span class="blank"></span> 時間
+          </div>
+          <div class="box calc">
+            <span class="t">ポイント通帳</span>
+            今週獲得 <span class="blank"></span>pt<br>
+            残高 <span class="blank"></span>pt
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="week">
+      <div class="week-head"><span class="num">第　　週</span><span class="range">（　　/　　 〜 　　/　　）</span></div>
+      <div class="grid">
+        <table class="log">
+          <thead>
+            <tr><th>曜</th><th>教科</th><th>点数</th><th>100点(pt)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="day">月</td><td class="subj"></td><td class="score"></td><td class="pt"></td></tr>
+            <tr><td class="day">火</td><td class="subj"></td><td class="score"></td><td class="pt"></td></tr>
+            <tr><td class="day">水</td><td class="subj"></td><td class="score"></td><td class="pt"></td></tr>
+            <tr><td class="day">木</td><td class="subj"></td><td class="score"></td><td class="pt"></td></tr>
+            <tr><td class="day">金</td><td class="subj"></td><td class="score"></td><td class="pt"></td></tr>
+          </tbody>
+        </table>
+        <div class="tally">
+          <div class="box">
+            <span class="t">4教科コンプリート</span>
+            <span class="chk">英 □　数 □　理 □　社 □</span>
+            <div class="note">全部 ✓ で +1時間ボーナス</div>
+          </div>
+          <div class="box calc">
+            <span class="t">翌週のSwitch権利</span>
+            実施 <span class="blank"></span>日 ＋ ボーナス <span class="blank"></span>h<br>
+            ＝ 合計 <span class="blank"></span> 時間
+          </div>
+          <div class="box calc">
+            <span class="t">ポイント通帳</span>
+            今週獲得 <span class="blank"></span>pt<br>
+            残高 <span class="blank"></span>pt
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="week">
+      <div class="week-head"><span class="num">第　　週</span><span class="range">（　　/　　 〜 　　/　　）</span></div>
+      <div class="grid">
+        <table class="log">
+          <thead>
+            <tr><th>曜</th><th>教科</th><th>点数</th><th>100点(pt)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="day">月</td><td class="subj"></td><td class="score"></td><td class="pt"></td></tr>
+            <tr><td class="day">火</td><td class="subj"></td><td class="score"></td><td class="pt"></td></tr>
+            <tr><td class="day">水</td><td class="subj"></td><td class="score"></td><td class="pt"></td></tr>
+            <tr><td class="day">木</td><td class="subj"></td><td class="score"></td><td class="pt"></td></tr>
+            <tr><td class="day">金</td><td class="subj"></td><td class="score"></td><td class="pt"></td></tr>
+          </tbody>
+        </table>
+        <div class="tally">
+          <div class="box">
+            <span class="t">4教科コンプリート</span>
+            <span class="chk">英 □　数 □　理 □　社 □</span>
+            <div class="note">全部 ✓ で +1時間ボーナス</div>
+          </div>
+          <div class="box calc">
+            <span class="t">翌週のSwitch権利</span>
+            実施 <span class="blank"></span>日 ＋ ボーナス <span class="blank"></span>h<br>
+            ＝ 合計 <span class="blank"></span> 時間
+          </div>
+          <div class="box calc">
+            <span class="t">ポイント通帳</span>
+            今週獲得 <span class="blank"></span>pt<br>
+            残高 <span class="blank"></span>pt
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    
+  </div>
+</div>
+</body>
+</html>
